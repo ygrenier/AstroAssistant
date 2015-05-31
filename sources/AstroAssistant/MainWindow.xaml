@@ -1,8 +1,31 @@
-﻿<Window x:Class="AstroAssistant.MainWindow"
+﻿<Fluent:RibbonWindow x:Class="AstroAssistant.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        Title="Astro Assistant" Height="350" Width="525">
+    <Fluent:RibbonWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Windows8/Generic.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+    </Fluent:RibbonWindow.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Fluent:Ribbon>
+            <Fluent:RibbonTabItem Header="Accueil">
+                
+            </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Thème">
+
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
         
     </Grid>
-</Window>
+</Fluent:RibbonWindow>
