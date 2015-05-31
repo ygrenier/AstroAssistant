@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroAssistant", "AstroAssistant\AstroAssistant.csproj", "{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{EE48F4B0-5C75-42C8-9351-BD0B300A2091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astro.Library", "Framework\Astro.Library\Astro.Library.csproj", "{EF40F671-F39F-4FC7-AA4A-0431274C7204}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,15 @@ Global
 		{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204} = {EE48F4B0-5C75-42C8-9351-BD0B300A2091}
 	EndGlobalSection
 EndGlobal
