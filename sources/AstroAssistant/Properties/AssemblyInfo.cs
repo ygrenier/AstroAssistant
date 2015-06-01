@@ -29,6 +29,7 @@ using System.Windows;
 //la ligne ci-après pour qu'elle corresponde au paramètre UICulture du fichier projet.
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
+[assembly: NeutralResourcesLanguageAttribute("fr", UltimateResourceFallbackLocation.Satellite)]
 
 
 [assembly: ThemeInfo(
@@ -53,4 +54,3 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.1.0.0")]
 [assembly: AssemblyFileVersion("0.1.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("fr")]

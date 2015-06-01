@@ -5,7 +5,7 @@
     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
     Title="Astro Assistant"
     SnapsToDevicePixels="True"
-    Height="380" Width="600"  
+    Height="380" Width="600"
     WindowState="Maximized">
     <Fluent:RibbonWindow.Resources>
         <ResourceDictionary>
@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         
         <Fluent:Ribbon>
-            <Fluent:RibbonTabItem Header="Accueil">
+            <Fluent:RibbonTabItem x:Uid="MainRibbon_TabHome" Header="Accueil">
                 <Fluent:RibbonGroupBox Header="Thème">
                     <Fluent:Button Size="Large" Header="Nouveau" />
                     <Fluent:Button Size="Middle" Header="Ouvrir"/>
@@ -33,7 +33,7 @@
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Affichage">
                     <Fluent:ToggleButton Size="Middle" Header="Thème astral" GroupName="ThemeView" IsChecked="True" />
-                    <Fluent:ToggleButton Size="Middle" Header="Ephéméride" GroupName="ThemeView" />
+                    <Fluent:ToggleButton Size="Middle" Header="Ephémérides" GroupName="ThemeView" />
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
