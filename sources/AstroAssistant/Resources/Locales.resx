@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MainRibbon_TabHome.Header" xml:space="preserve">
+  <data name="MainRibbon_ButtonCloseTheme_Header" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="MainRibbon_ButtonNewTheme_Header" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="MainRibbon_ButtonOpenTheme_Header" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="MainRibbon_ButtonSaveAsTheme_Header" xml:space="preserve">
+    <value>Enregistrer sous...</value>
+  </data>
+  <data name="MainRibbon_ButtonSaveTheme_Header" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="MainRibbon_TabHome_GroupTheme_Header" xml:space="preserve">
+    <value>Thème</value>
+  </data>
+  <data name="MainRibbon_TabHome_Header" xml:space="preserve">
     <value>Accueil</value>
   </data>
 </root>
