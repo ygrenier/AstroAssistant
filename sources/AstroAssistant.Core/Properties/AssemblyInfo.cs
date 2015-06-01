@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("AstroAssistant.Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Core library for the Astro Assistant applications")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AstroAssistant.Core")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("Yan Grenier")]
+[assembly: AssemblyProduct("AstroAssistant")]
+[assembly: AssemblyCopyright("Copyright © Yan Grenier 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("fr")]
