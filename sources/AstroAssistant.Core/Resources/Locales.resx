@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="WrongExpressionMessage" xml:space="preserve">
-    <value>Expression invalide.Doit être appelé avec une expression de type
+    <value>Expression invalide. Doit être appelé avec une expression de type
 n() =&gt; PropertyName</value>
   </data>
   <data name="WrongUnaryExpressionMessage" xml:space="preserve">
-    <value>Expression unaire invalide. Doit être appelé appelé avec une expression de type 
+    <value>Expression unaire invalide. Doit être appelé avec une expression de type
 n() =&gt; PropertyName</value>
   </data>
 </root>

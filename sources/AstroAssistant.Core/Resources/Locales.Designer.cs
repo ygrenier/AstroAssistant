@@ -61,7 +61,7 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Expression invalide.Doit être appelé avec une expression de type
+        ///   Recherche une chaîne localisée semblable à Expression invalide. Doit être appelé avec une expression de type
         ///n() =&gt; PropertyName.
         /// </summary>
         internal static string WrongExpressionMessage {
@@ -71,7 +71,7 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Expression unaire invalide. Doit être appelé appelé avec une expression de type 
+        ///   Recherche une chaîne localisée semblable à Expression unaire invalide. Doit être appelé avec une expression de type
         ///n() =&gt; PropertyName.
         /// </summary>
         internal static string WrongUnaryExpressionMessage {

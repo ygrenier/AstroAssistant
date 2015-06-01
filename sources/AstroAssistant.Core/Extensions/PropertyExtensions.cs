@@ -52,14 +52,8 @@ namespace AstroAssistant
                 throw new ArgumentException(global::AstroAssistant.Resources.Locales.WrongExpressionMessage, "expression");
             }
 
-            // Reject the anonymous member
-            if (member.DeclaringType == null)
-            {
-                throw new ArgumentException(global::AstroAssistant.Resources.Locales.WrongExpressionMessage, "expression");
-            }
-
             // Reject the member from another class
-            if (target != null)
+            if (target != null && member.DeclaringType != null)
             {
                 if (!member.DeclaringType.IsAssignableFrom(target.GetType()))
                 {
