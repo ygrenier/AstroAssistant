@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroAssistant.Core", "Astr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroAssistant.Core.Tests", "Tests\AstroAssistant.Core.Tests\AstroAssistant.Core.Tests.csproj", "{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astro.SwissEphNet", "Framework\Astro.SwissEphNet\Astro.SwissEphNet.csproj", "{5A212B4E-E21B-42FF-8095-9775B6C64000}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{22B2366D-FCB5-4DEC-96C6-AC7699614E13} = {2FFBD742-BD74-4B52-B922-826313A5452D}
 		{66607154-DA36-4B55-815D-AD92E904759E} = {AA84DCDD-3F91-4CD9-A88E-79C54B49E82D}
 		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49} = {2FFBD742-BD74-4B52-B922-826313A5452D}
+		{5A212B4E-E21B-42FF-8095-9775B6C64000} = {EE48F4B0-5C75-42C8-9351-BD0B300A2091}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		RESX_NeutralResourcesLanguage = fr-FR

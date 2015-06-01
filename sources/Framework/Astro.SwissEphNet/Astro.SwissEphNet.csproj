@@ -5,15 +5,15 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF40F671-F39F-4FC7-AA4A-0431274C7204}</ProjectGuid>
+    <ProjectGuid>{5A212B4E-E21B-42FF-8095-9775B6C64000}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Astro</RootNamespace>
-    <AssemblyName>Astro.Library</AssemblyName>
+    <RootNamespace>Astro.SwissEphNet</RootNamespace>
+    <AssemblyName>Astro.SwissEphNet</AssemblyName>
     <DefaultLanguage>fr-FR</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,12 +34,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Compile Include="SwissEphNetProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AstroEngine.cs" />
-    <Compile Include="IEphemerisProvider.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Reference Include="SwissEphNet, Version=2.1.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SwissEphNet.2.1.0.6\lib\portable-net40+sl50+win+wp80\SwissEphNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Astro.Library\Astro.Library.csproj">
+      <Project>{ef40f671-f39f-4fc7-aa4a-0431274c7204}</Project>
+      <Name>Astro.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,18 @@ namespace Astro.Library.Tests
         [Fact]
         public void TestCreate()
         {
-            var engine = new AstroEngine();
+            var mockProvider = new Mock<IEphemerisProvider>();
+            var provider = mockProvider.Object;
+
+            using (var engine = new AstroEngine(provider))
+            {
+                Assert.Same(provider, engine.EphemerisProvider);
+            }
+
+            mockProvider.Verify(p => p.Dispose(), Times.Once());
+
+            Assert.Throws<ArgumentNullException>(() => new AstroEngine(null));
+
         }
     }
 }
