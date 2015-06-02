@@ -75,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Locales.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -135,6 +136,10 @@
     <ProjectReference Include="..\Framework\Astro.Library\Astro.Library.csproj">
       <Project>{ef40f671-f39f-4fc7-aa4a-0431274c7204}</Project>
       <Name>Astro.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Astro.SwissEphNet\Astro.SwissEphNet.csproj">
+      <Project>{5a212b4e-e21b-42ff-8095-9775b6c64000}</Project>
+      <Name>Astro.SwissEphNet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

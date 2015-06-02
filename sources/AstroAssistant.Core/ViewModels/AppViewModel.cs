@@ -8,8 +8,25 @@ namespace AstroAssistant.ViewModels
     /// <summary>
     /// Base Application ViewModel
     /// </summary>
-    public abstract class AppViewModel : ViewModel
+    public abstract class AppViewModel : ViewModel, IDisposable
     {
+
+        /// <summary>
+        /// Internal release resources
+        /// </summary>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+                Close();
+        }
+
+        /// <summary>
+        /// Release resources
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
 
         /// <summary>
         /// Ephemeris provider creator
@@ -28,10 +45,22 @@ namespace AstroAssistant.ViewModels
         }
 
         /// <summary>
+        /// Close the viewmodel
+        /// </summary>
+        public void Close()
+        {
+            if (AstroEngine != null)
+            {
+                AstroEngine.Dispose();
+                AstroEngine = null;
+            }
+        }
+
+        /// <summary>
         /// Current Astro Engine
         /// </summary>
         public Astro.AstroEngine AstroEngine { get; private set; }
-        
+
     }
 
 }

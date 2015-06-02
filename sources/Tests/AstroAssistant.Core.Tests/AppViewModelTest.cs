@@ -49,5 +49,57 @@ namespace AstroAssistant.Core.Tests
 
         }
 
+        [Fact]
+        public void TestClose()
+        {
+            var mockProvider = new Mock<IEphemerisProvider>();
+            var provider = mockProvider.Object;
+
+            var mockViewmodel = new Mock<AppViewModel>();
+            mockViewmodel.Protected().Setup<IEphemerisProvider>("CreateEphemerisProvider").Returns(provider);
+
+            // Not initialized
+            var viewmodel = mockViewmodel.Object;
+            Assert.Null(viewmodel.AstroEngine);
+
+            // First initialization
+            viewmodel.Initialize();
+            Assert.NotNull(viewmodel.AstroEngine);
+            Assert.Same(provider, viewmodel.AstroEngine.EphemerisProvider);
+
+            // Close
+            viewmodel.Close();
+            Assert.Null(viewmodel.AstroEngine);
+            viewmodel.Close();
+            Assert.Null(viewmodel.AstroEngine);
+        }
+
+        [Fact]
+        public void TestDisposable()
+        {
+            var mockProvider = new Mock<IEphemerisProvider>();
+            var provider = mockProvider.Object;
+
+            var mockViewmodel = new Mock<AppViewModel>() {
+                CallBase = true
+            };
+            mockViewmodel.Protected().Setup<IEphemerisProvider>("CreateEphemerisProvider").Returns(provider);
+
+            AppViewModel viewmodel = null;
+            // Not initialized
+            using (viewmodel = mockViewmodel.Object)
+            {
+                Assert.Null(viewmodel.AstroEngine);
+
+                // First initialization
+                viewmodel.Initialize();
+                Assert.NotNull(viewmodel.AstroEngine);
+                Assert.Same(provider, viewmodel.AstroEngine.EphemerisProvider);
+            }
+            Assert.Null(viewmodel.AstroEngine);
+            viewmodel.Close();
+            Assert.Null(viewmodel.AstroEngine);
+        }
+
     }
 }
