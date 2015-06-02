@@ -41,6 +41,7 @@
     <Compile Include="Date\JulianDay.cs" />
     <Compile Include="Date\[Enums].cs" />
     <Compile Include="IEphemerisProvider.cs" />
+    <Compile Include="NatalChartDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
