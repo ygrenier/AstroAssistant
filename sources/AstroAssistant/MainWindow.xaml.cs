@@ -24,6 +24,16 @@ namespace AstroAssistant
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += MainWindow_Loaded;
         }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ViewModels.MainViewModel();
+            ViewModel.Initialize();
+        }
+
+        public ViewModels.MainViewModel ViewModel { get { return DataContext as ViewModels.MainViewModel; } }
+
     }
 }

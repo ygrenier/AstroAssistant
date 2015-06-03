@@ -5,6 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
     xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    xmlns:vm="clr-namespace:AstroAssistant.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
     lex:LocalizeDictionary.DesignCulture="fr"
     lex:ResxLocalizationProvider.DefaultAssembly="AstroAssistant"
     lex:ResxLocalizationProvider.DefaultDictionary="Locales"
@@ -18,17 +23,11 @@
                 <!--<ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Windows8/Generic.xaml" />-->
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Office2013/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
         </ResourceDictionary>
     </Fluent:RibbonWindow.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Fluent:Ribbon>
-            <Fluent:RibbonTabItem Header="{lex:Loc MainRibbon_TabHome_Header}">
+    <DockPanel>
+        <!--<Fluent:Ribbon DockPanel.Dock="Top">
+            --><!--<Fluent:RibbonTabItem Header="{lex:Loc MainRibbon_TabHome_Header}">
                 <Fluent:RibbonGroupBox Header="{lex:Loc MainRibbon_TabHome_GroupTheme_Header}">
                     <Fluent:Button Size="Large" Header="{lex:Loc MainRibbon_ButtonNewTheme_Header}" />
                     <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonOpenTheme_Header}"/>
@@ -40,8 +39,19 @@
                     <Fluent:ToggleButton Size="Middle" Header="Thème astral" GroupName="ThemeView" IsChecked="True" />
                     <Fluent:ToggleButton Size="Middle" Header="Ephémérides" GroupName="ThemeView" />
                 </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>--><!--
+        </Fluent:Ribbon>-->
+        <Fluent:Ribbon DockPanel.Dock="Top">
+            <Fluent:RibbonTabItem Header="{lex:Loc MainRibbon_TabHome_Header}">
+                <Fluent:RibbonGroupBox Header="{lex:Loc MainRibbon_TabHome_GroupTheme_Header}">
+                    <Fluent:Button Size="Large" Header="{lex:Loc MainRibbon_ButtonNewTheme_Header}" />
+                    <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonOpenTheme_Header}"/>
+                    <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonSaveTheme_Header}"/>
+                    <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonSaveAsTheme_Header}"/>
+                    <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonCloseTheme_Header}"/>
+                </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
         
-    </Grid>
+    </DockPanel>
 </Fluent:RibbonWindow>
