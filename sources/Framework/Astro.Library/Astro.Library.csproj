@@ -40,6 +40,9 @@
     <Compile Include="AstroEngine.cs" />
     <Compile Include="Date\JulianDay.cs" />
     <Compile Include="Date\[Enums].cs" />
+    <Compile Include="Geographic\GeoPosition.cs" />
+    <Compile Include="Geographic\Latitude.cs" />
+    <Compile Include="Geographic\Longitude.cs" />
     <Compile Include="IEphemerisProvider.cs" />
     <Compile Include="NatalChartDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
