@@ -16,6 +16,15 @@ namespace Astro
         /// </summary>
         public String Name { get; set; }
 
+        /// <summary>
+        /// Nom du lieu de naissance
+        /// </summary>
+        public String BirthPlaceName { get; set; }
+
+        /// <summary>
+        /// Position géographique du lieu de naissance
+        /// </summary>
+        public GeoPosition BirthPlacePosition { get; set; }
     }
 
 }
