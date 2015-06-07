@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstroEngine.cs" />
+    <Compile Include="DateDefinition.cs" />
     <Compile Include="Date\JulianDay.cs" />
     <Compile Include="Date\[Enums].cs" />
     <Compile Include="Geographic\GeoPosition.cs" />

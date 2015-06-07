@@ -17,6 +17,11 @@ namespace Astro
         public String Name { get; set; }
 
         /// <summary>
+        /// Date de naissance
+        /// </summary>
+        public DateTimeOffset BirthDate { get; set; }
+
+        /// <summary>
         /// Nom du lieu de naissance
         /// </summary>
         public String BirthPlaceName { get; set; }

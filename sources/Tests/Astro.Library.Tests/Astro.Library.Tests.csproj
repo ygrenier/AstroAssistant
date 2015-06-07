@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstroEngineTest.cs" />
+    <Compile Include="DateDefinitionTest.cs" />
     <Compile Include="GeoPositionTest.cs" />
     <Compile Include="JulianDayTest.cs" />
     <Compile Include="LatitudeTest.cs" />
