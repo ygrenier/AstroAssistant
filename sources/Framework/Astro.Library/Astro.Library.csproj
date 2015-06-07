@@ -39,14 +39,19 @@
   <ItemGroup>
     <Compile Include="AstroEngine.cs" />
     <Compile Include="DateDefinition.cs" />
+    <Compile Include="Date\EphemerisTime.cs" />
     <Compile Include="Date\JulianDay.cs" />
+    <Compile Include="Date\SideralTime.cs" />
     <Compile Include="Date\[Enums].cs" />
+    <Compile Include="Extensions\EphemerisProviderExtensions.cs" />
     <Compile Include="Geographic\GeoPosition.cs" />
     <Compile Include="Geographic\Latitude.cs" />
     <Compile Include="Geographic\Longitude.cs" />
     <Compile Include="IEphemerisProvider.cs" />
+    <Compile Include="NatalChart.cs" />
     <Compile Include="NatalChartDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="[Enums].cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="SwissEphNetProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="[Enums].cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwissEphNet, Version=2.1.0.6, Culture=neutral, processorArchitecture=MSIL">

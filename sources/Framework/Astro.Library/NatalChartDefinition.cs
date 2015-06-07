@@ -39,6 +39,17 @@ namespace Astro
         /// Position géographique du lieu de naissance
         /// </summary>
         public GeoPosition BirthPlacePosition { get; set; }
+
+        /// <summary>
+        /// Position Center
+        /// </summary>
+        public PositionCenter PositionCenter { get; set; }
+
+        /// <summary>
+        /// Calcul des maisons
+        /// </summary>
+        public HouseSystem HouseSystem { get; set; }
+
     }
 
 }
