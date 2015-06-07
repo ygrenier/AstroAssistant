@@ -191,6 +191,27 @@ namespace Astro.SwissEphNet
 
         #endregion
 
+        #region Calcul planétaires
+
+        /// <summary>
+        /// Calcul des nutations écliptiques
+        /// </summary>
+        public EclipticNutationValues CalcEclipticNutation(EphemerisTime time)
+        {
+            CheckInitialized();
+            String serr = null;
+            Double[] x = new double[24];
+            var iflgret = Sweph.swe_calc(time, SwissEph.SE_ECL_NUT, _SwephFlag, x, ref serr);
+            return new EclipticNutationValues {
+                TrueEclipticObliquity = x[0],
+                MeanEclipticObliquity = x[1],
+                NutationLongitude = x[2],
+                NutationObliquity = x[3]
+            };
+        }
+
+        #endregion
+
         #region Calcul des maisons
 
         /// <summary>

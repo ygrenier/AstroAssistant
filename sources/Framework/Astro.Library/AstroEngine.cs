@@ -67,14 +67,12 @@ namespace Astro
             result.EphemerisTime = EphemerisProvider.ToEphemerisTime(result.JulianDay);
             result.SideralTime = EphemerisProvider.ToSideralTime(result.JulianDay, definition.BirthPlacePosition.Longitude);
 
-            //// Calculation
-            //String serr = null;
-            //Double[] x = new double[24];
-            //var iflgret = sweph.swe_calc(result.EphemerisTime, Planet.EclipticNutation, x, ref serr);
-            //result.TrueEclipticObliquity = x[0];
-            //result.MeanEclipticObliquity = x[1];
-            //result.NutationLongitude = x[2];
-            //result.NutationObliquity = x[3];
+            // Calculs
+            var enValues = EphemerisProvider.CalcEclipticNutation(result.EphemerisTime);
+            result.TrueEclipticObliquity = enValues.TrueEclipticObliquity;
+            result.MeanEclipticObliquity = enValues.MeanEclipticObliquity;
+            result.NutationLongitude = enValues.NutationLongitude;
+            result.NutationObliquity = enValues.NutationObliquity;
 
             //// Planets
             //foreach (var planet in input.Planets)

@@ -38,6 +38,11 @@ namespace Astro
         void SetTopographic(PositionCenter positionCenter, GeoPosition geoPosition = null);
 
         /// <summary>
+        /// Calcul des nutations écliptiques
+        /// </summary>
+        EclipticNutationValues CalcEclipticNutation(EphemerisTime time);
+
+        /// <summary>
         /// Système de calcul des maisons
         /// </summary>
         HouseSystem HouseSystem { get; set; }

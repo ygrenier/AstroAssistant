@@ -30,6 +30,12 @@ namespace Astro.Library.Tests
         public void TestCalculateNatalChart()
         {
             var mockProvider = new Mock<IEphemerisProvider>();
+            mockProvider.Setup(p => p.CalcEclipticNutation(It.IsAny<EphemerisTime>())).Returns(new EclipticNutationValues {
+                MeanEclipticObliquity = 1,
+                NutationLongitude = 2,
+                NutationObliquity = 3,
+                TrueEclipticObliquity = 4
+            });
             var provider = mockProvider.Object;
             using (var engine = new AstroEngine(provider))
             {
@@ -56,6 +62,10 @@ namespace Astro.Library.Tests
                 Assert.Equal(new DateTime(), theme.UniversalTime);
                 Assert.Equal(0d, theme.EphemerisTime);
                 Assert.Equal(3.14666666666667, (Double)theme.SideralTime, 14);
+                Assert.Equal(1, theme.MeanEclipticObliquity);
+                Assert.Equal(2, theme.NutationLongitude);
+                Assert.Equal(3, theme.NutationObliquity);
+                Assert.Equal(4, theme.TrueEclipticObliquity);
 
                 Assert.Throws<ArgumentNullException>(() => engine.CalculateNatalChart(null));
             }

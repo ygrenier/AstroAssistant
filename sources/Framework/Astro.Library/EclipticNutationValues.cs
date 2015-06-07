@@ -6,36 +6,10 @@ using System.Text;
 namespace Astro
 {
     /// <summary>
-    /// Thème natal
+    /// Valeurs
     /// </summary>
-    public class NatalChart
+    public class EclipticNutationValues
     {
-
-        /// <summary>
-        /// Définition du thème
-        /// </summary>
-        public NatalChartDefinition Definition { get; set; }
-
-        /// <summary>
-        /// Date Julien
-        /// </summary>
-        public JulianDay JulianDay { get; set; }
-
-        /// <summary>
-        /// Temps universel
-        /// </summary>
-        public DateTime UniversalTime { get; set; }
-
-        /// <summary>
-        /// Temps éphémérides
-        /// </summary>
-        public EphemerisTime EphemerisTime { get; set; }
-
-        /// <summary>
-        /// Temps sidéral
-        /// </summary>
-        public SideralTime SideralTime { get; set; }
-
         /// <summary>
         /// Mean ecliptic obliquity
         /// </summary>
