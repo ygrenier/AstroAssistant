@@ -11,6 +11,15 @@ namespace Astro
     /// </summary>
     public class NatalChartDefinition
     {
+
+        /// <summary>
+        /// Création d'une définition d'un thème natal
+        /// </summary>
+        public NatalChartDefinition()
+        {
+            BirthDate = new DateDefinition();
+        }
+
         /// <summary>
         /// Nom de la personne
         /// </summary>
@@ -19,7 +28,7 @@ namespace Astro
         /// <summary>
         /// Date de naissance
         /// </summary>
-        public DateTimeOffset BirthDate { get; set; }
+        public DateDefinition BirthDate { get; private set; }
 
         /// <summary>
         /// Nom du lieu de naissance
