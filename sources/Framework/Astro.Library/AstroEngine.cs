@@ -78,7 +78,7 @@ namespace Astro
             foreach (var planet in definition.Planets)
             {
                 if (planet == Planet.EclipticNutation) continue;
-                if (planet == Planet.Earth && (definition.PositionCenter == PositionCenter.Geocentric || definition.PositionCenter == PositionCenter.Topocentric)) 
+                if (planet == Planet.Earth && (definition.PositionCenter == PositionCenter.Geocentric || definition.PositionCenter == PositionCenter.Topocentric))
                     continue;   // Exclude Earth if geo or topo
                 var pi = EphemerisProvider.CalcPlanet(planet, result.EphemerisTime, result.ARMC, definition.BirthPlacePosition.Longitude, result.TrueEclipticObliquity);
                 result.Planets.Add(pi);
@@ -111,29 +111,9 @@ namespace Astro
             //    spnam = se_pname;
             // */
 
-            //// Houses
-            //double[] cusps = new double[input.HouseSystem == HouseSystem.GauquelinSector ? 37 : 13];
-            //double[] ascmc = new double[10];
-            //var hNames = new String[] { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" };
-            //var amNames = new String[] { "Ascendant", "MC", "ARMC", "Vertex", "Equatorial ascendant", 
-            //        "Co-ascendant (Walter Koch)", "Co-ascendant (Michael Munkasey)", "Polar ascendant (M. Munkasey)" };
-            //sweph.swe_houses_ex(result.JulianDay, input.Latitude, input.Longitude, cusps, ascmc);
-            //for (int i = 1; i <= 12; i++)
-            //{
-            //    result.Houses.Add(new HouseValues() {
-            //        House = i,
-            //        HouseName = hNames[i],
-            //        Cusp = cusps[i]
-            //    });
-            //}
-            //for (int i = 0; i < 7; i++)
-            //{
-            //    result.ASMCs.Add(new HouseValues() {
-            //        House = i,
-            //        HouseName = amNames[i],
-            //        Cusp = ascmc[i]
-            //    });
-            //}
+            // Houses
+            var houses = EphemerisProvider.CalcHouses(result.JulianDay, definition.BirthPlacePosition.Latitude, definition.BirthPlacePosition.Longitude, result.AscMcs);
+            result.Houses.AddRange(houses);
 
             return result;
         }

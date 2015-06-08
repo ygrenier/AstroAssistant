@@ -49,6 +49,7 @@
     <Compile Include="Geographic\GeoPosition.cs" />
     <Compile Include="Geographic\Latitude.cs" />
     <Compile Include="Geographic\Longitude.cs" />
+    <Compile Include="Houses\HouseValues.cs" />
     <Compile Include="IEphemerisProvider.cs" />
     <Compile Include="NatalChart.cs" />
     <Compile Include="NatalChartDefinition.cs" />

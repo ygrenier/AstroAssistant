@@ -277,6 +277,47 @@ namespace Astro.SwissEphNet
             return InternalCalcPlanet(planet, time, armc, longitude, trueEclipticObliquity);
         }
 
+        /// <summary>
+        /// Calcul des maisons et des ascdendants
+        /// </summary>
+        public IEnumerable<HouseValues> CalcHouses(JulianDay jDay, Latitude latitude, Longitude longitude, IList<HouseValues> ascmc = null)
+        {
+            // Houses
+            double[] cusps = new double[HouseSystem == HouseSystem.GauquelinSector ? 37 : 13];
+            double[] ascmcCusps = new double[7];
+            String serr = null;
+            var hNames = new String[] { 
+                "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", 
+                "IX", "X", "XI", "XII", "XII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", 
+                "XX", "XXI", "XXII", "XXII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", 
+                "XXX", "XXXI", "XXXII", "XXXII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX"
+            };
+            var amNames = new String[] { "Ascendant", "MC", "ARMC", "Vertex", "Equatorial ascendant", 
+                    "Co-ascendant (Walter Koch)", "Co-ascendant (Michael Munkasey)", "Polar ascendant (M. Munkasey)" };
+            var iflgret = Sweph.swe_houses_ex(jDay, _SwephFlag, latitude, longitude, HouseSystemToChar(HouseSystem), cusps, ascmcCusps);
+            if (iflgret < 0)
+                throw new SwissEphNetError(serr);
+            if (ascmc != null)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    ascmc.Add(new HouseValues {
+                        House = i,
+                        HouseName = amNames[i],
+                        Cusp = ascmcCusps[i]
+                    });
+                }
+            }
+            for (int i = 1; i < cusps.Length; i++)
+            {
+                yield return new HouseValues() {
+                    House = i,
+                    HouseName = hNames[i],
+                    Cusp = cusps[i]
+                };
+            }
+        }
+
         #endregion
 
         #region Calcul des maisons

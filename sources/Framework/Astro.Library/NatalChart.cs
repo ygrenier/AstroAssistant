@@ -16,6 +16,8 @@ namespace Astro
         public NatalChart()
         {
             Planets = new List<PlanetValues>();
+            Houses = new List<HouseValues>();
+            AscMcs = new List<HouseValues>();
         }
 
         /// <summary>
@@ -82,6 +84,16 @@ namespace Astro
         /// Liste des planètes
         /// </summary>
         public List<PlanetValues> Planets { get; private set; }
+
+        /// <summary>
+        /// Maisons
+        /// </summary>
+        public List<HouseValues> Houses { get; private set; }
+
+        /// <summary>
+        /// Ascendants
+        /// </summary>
+        public List<HouseValues> AscMcs { get; private set; }
 
     }
 }

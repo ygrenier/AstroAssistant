@@ -53,6 +53,11 @@ namespace Astro
         PlanetValues CalcPlanet(Planet planet, EphemerisTime time, double armc, Longitude longitude, double trueEclipticObliquity);
 
         /// <summary>
+        /// Calcul les positions des maisons
+        /// </summary>
+        IEnumerable<HouseValues> CalcHouses(JulianDay jDay, Latitude latitude, Longitude longitude, IList<HouseValues> ascmc = null);
+
+        /// <summary>
         /// Système de calcul des maisons
         /// </summary>
         HouseSystem HouseSystem { get; set; }
