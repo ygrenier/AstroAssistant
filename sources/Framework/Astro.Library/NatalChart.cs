@@ -10,6 +10,13 @@ namespace Astro
     /// </summary>
     public class NatalChart
     {
+        /// <summary>
+        /// Création d'un nouveau thème natal
+        /// </summary>
+        public NatalChart()
+        {
+            Planets = new List<PlanetValues>();
+        }
 
         /// <summary>
         /// Définition du thème
@@ -32,9 +39,24 @@ namespace Astro
         public EphemerisTime EphemerisTime { get; set; }
 
         /// <summary>
-        /// Temps sidéral
+        /// Delat T in seconds
         /// </summary>
-        public SideralTime SideralTime { get; set; }
+        public Double DeltaTSec { get { return EphemerisTime.DeltaT * 86400.0; } }
+
+        /// <summary>
+        /// Sideral time
+        /// </summary>
+        public double SideralTime { get; set; }
+
+        /// <summary>
+        /// Sideral time in degrees
+        /// </summary>
+        public double SideralTimeInDegrees { get { return SideralTime * 15; } }
+
+        /// <summary>
+        /// ARMC : Sideral time in degrees
+        /// </summary>
+        public double ARMC { get { return SideralTime * 15; } }
 
         /// <summary>
         /// Mean ecliptic obliquity
@@ -55,6 +77,11 @@ namespace Astro
         /// Nutation in obliquity
         /// </summary>
         public Double NutationObliquity { get; set; }
+
+        /// <summary>
+        /// Liste des planètes
+        /// </summary>
+        public List<PlanetValues> Planets { get; private set; }
 
     }
 }

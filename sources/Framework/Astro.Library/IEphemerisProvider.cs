@@ -43,6 +43,16 @@ namespace Astro
         EclipticNutationValues CalcEclipticNutation(EphemerisTime time);
 
         /// <summary>
+        /// Calcul les informations d'une planète sans sa position dans une maison
+        /// </summary>
+        PlanetValues CalcPlanet(Planet planet, EphemerisTime time);
+
+        /// <summary>
+        /// Calcul les informations d'une planète avec sa position dans une maison
+        /// </summary>
+        PlanetValues CalcPlanet(Planet planet, EphemerisTime time, double armc, Longitude longitude, double trueEclipticObliquity);
+
+        /// <summary>
         /// Système de calcul des maisons
         /// </summary>
         HouseSystem HouseSystem { get; set; }

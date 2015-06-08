@@ -54,6 +54,9 @@ namespace Astro.Library.Tests
                 def.BirthDate.Hour = 14;
                 def.BirthDate.Minute = 6;
                 def.BirthDate.TimeZone = TimeZoneInfo.FindSystemTimeZoneById("Romance Standard Time");
+                def.Planets.Add(Planet.EclipticNutation);
+                def.Planets.Add(Planet.Earth);
+                Assert.Equal(17, def.Planets.Count);
 
                 var theme = engine.CalculateNatalChart(def);
                 Assert.Same(def, theme.Definition);
@@ -61,11 +64,16 @@ namespace Astro.Library.Tests
                 Assert.Equal(0, theme.JulianDay);
                 Assert.Equal(new DateTime(), theme.UniversalTime);
                 Assert.Equal(0d, theme.EphemerisTime);
+                Assert.Equal(0d, theme.DeltaTSec);
                 Assert.Equal(3.14666666666667, (Double)theme.SideralTime, 14);
+                Assert.Equal(47.2, (Double)theme.SideralTimeInDegrees, 14);
+                Assert.Equal(47.2, (Double)theme.ARMC, 14);
                 Assert.Equal(1, theme.MeanEclipticObliquity);
                 Assert.Equal(2, theme.NutationLongitude);
                 Assert.Equal(3, theme.NutationObliquity);
                 Assert.Equal(4, theme.TrueEclipticObliquity);
+
+                Assert.Equal(14, theme.Planets.Count);
 
                 Assert.Throws<ArgumentNullException>(() => engine.CalculateNatalChart(null));
             }

@@ -210,6 +210,73 @@ namespace Astro.SwissEphNet
             };
         }
 
+        PlanetValues InternalCalcPlanet(Planet planet, EphemerisTime time, double? armc = null, Longitude? longitude = null, double? trueEclipticObliquity = null)
+        {
+            CheckInitialized();
+            String serr = null;
+            Double[] x = new double[24];
+            String star = String.Empty;
+            int iflgret;
+            var result = new PlanetValues() {
+                Planet = planet
+            };
+            if (planet == Planet.FixedStar)
+            {
+                iflgret = Sweph.swe_fixstar(star, time, _SwephFlag, x, ref serr);
+                result.PlanetName = star;
+            }
+            else
+            {
+                iflgret = Sweph.swe_calc(time, planet, _SwephFlag, x, ref serr);
+                result.PlanetName = Sweph.swe_get_planet_name(planet);
+                if (planet.IsAsteroid)
+                {
+                    result.PlanetName = String.Format("#{0}", planet - Planet.FirstAsteroid);
+                }
+            }
+            if (iflgret >= 0)
+            {
+                result.Longitude = x[0];
+                result.Latitude = x[1];
+                result.Distance = x[2];
+                result.LongitudeSpeed = x[3];
+                result.LatitudeSpeed = x[4];
+                result.DistanceSpeed = x[5];
+                if (armc.HasValue && longitude.HasValue && trueEclipticObliquity.HasValue)
+                {
+                    result.HousePosition = Sweph.swe_house_pos(armc.Value, longitude.Value, trueEclipticObliquity.Value, HouseSystemToChar(_HouseSystem), x, ref serr);
+                    if (result.HousePosition == 0)
+                        iflgret = SwissEph.ERR;
+                }
+            }
+            if (iflgret < 0)
+            {
+                if (!String.IsNullOrEmpty(serr))
+                {
+                    result.ErrorMessage = serr;
+                }
+            }
+            else if (!String.IsNullOrEmpty(serr) && String.IsNullOrEmpty(result.WarnMessage))
+                result.WarnMessage = serr;
+            return result;
+        }
+
+        /// <summary>
+        /// Calcul les informations d'une planète sans sa position dans une maison
+        /// </summary>
+        public PlanetValues CalcPlanet(Planet planet, EphemerisTime time)
+        {
+            return InternalCalcPlanet(planet, time);
+        }
+
+        /// <summary>
+        /// Calcul les informations d'une planète avec sa position dans une maison
+        /// </summary>
+        public PlanetValues CalcPlanet(Planet planet, EphemerisTime time, double armc, Longitude longitude, double trueEclipticObliquity)
+        {
+            return InternalCalcPlanet(planet, time, armc, longitude, trueEclipticObliquity);
+        }
+
         #endregion
 
         #region Calcul des maisons

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppViewModelTest.cs" />
+    <Compile Include="NatalChartViewModelTest.cs" />
     <Compile Include="PropertyExtensionsTest.cs" />
     <Compile Include="ViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
