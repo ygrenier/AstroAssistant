@@ -52,6 +52,7 @@
     <Compile Include="IEphemerisProvider.cs" />
     <Compile Include="NatalChart.cs" />
     <Compile Include="NatalChartDefinition.cs" />
+    <Compile Include="PlanetValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="[Enums].cs" />
   </ItemGroup>

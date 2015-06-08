@@ -14,6 +14,8 @@ namespace Astro.Library.Tests
         {
             var theme = new NatalChartDefinition();
             Assert.NotNull(theme.BirthDate);
+            Assert.NotNull(theme.Planets);
+            Assert.Equal(15, theme.Planets.Count);
         }
     }
 }

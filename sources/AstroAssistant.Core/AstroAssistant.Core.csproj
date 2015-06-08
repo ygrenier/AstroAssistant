@@ -49,6 +49,7 @@
       <DependentUpon>Locales.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\NatalChartViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,23 @@ namespace Astro
         public NatalChartDefinition()
         {
             BirthDate = new DateDefinition();
+            HouseSystem = Astro.HouseSystem.Placidus;
+            Planets = new List<Planet>();
+            SetDefaultPlanets();
+        }
+
+        /// <summary>
+        /// Défini la liste des planètes par défaut
+        /// </summary>
+        public void SetDefaultPlanets()
+        {
+            Planets.Clear();
+            Planets.AddRange(new Planet[] { 
+                Planet.Sun, Planet.Moon, Planet.Mercury, Planet.Venus, Planet.Mars, Planet.Jupiter, 
+                Planet.Saturn, Planet.Uranus, Planet.Neptune, Planet.Pluto,
+                Planet.MeanNode, Planet.TrueNode,
+                Planet.MeanApog, Planet.OscuApog, Planet.Earth
+            });
         }
 
         /// <summary>
@@ -50,6 +67,10 @@ namespace Astro
         /// </summary>
         public HouseSystem HouseSystem { get; set; }
 
+        /// <summary>
+        /// Liste des planètes
+        /// </summary>
+        public List<Planet> Planets { get; private set; }
     }
 
 }

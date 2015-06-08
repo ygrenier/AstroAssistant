@@ -74,52 +74,52 @@ namespace Astro
             result.NutationLongitude = enValues.NutationLongitude;
             result.NutationObliquity = enValues.NutationObliquity;
 
-            //// Planets
-            //foreach (var planet in input.Planets)
-            //{
-            //    if (planet == Planet.Earth) continue;   // Exclude Earth if geo or topo
-            //    serr = null;
-            //    var pi = new PlanetValues() {
-            //        Planet = planet
-            //    };
-            //    result.Planets.Add(pi);
-            //    // Ecliptic position
-            //    if (planet == Planet.FixedStar)
-            //    {
-            //        iflgret = sweph.swe_fixstar(star, result.EphemerisTime, x, ref serr);
-            //        pi.PlanetName = star;
-            //    }
-            //    else
-            //    {
-            //        iflgret = sweph.swe_calc(result.EphemerisTime, planet, x, ref serr);
-            //        pi.PlanetName = sweph.swe_get_planet_name(planet);
-            //        if (planet.IsAsteroid)
-            //        {
-            //            pi.PlanetName = String.Format("#{0}", planet - Planet.FirstAsteroid);
-            //        }
-            //    }
-            //    if (iflgret >= 0)
-            //    {
-            //        pi.Longitude = x[0];
-            //        pi.Latitude = x[1];
-            //        pi.Distance = x[2];
-            //        pi.LongitudeSpeed = x[3];
-            //        pi.LatitudeSpeed = x[4];
-            //        pi.DistanceSpeed = x[5];
-            //        pi.HousePosition = sweph.swe_house_pos(result.ARMC, input.Latitude, result.TrueEclipticObliquity, x, ref serr);
-            //        if (pi.HousePosition == 0)
-            //            iflgret = SwissEph.ERR;
-            //    }
-            //    if (iflgret < 0)
-            //    {
-            //        if (!String.IsNullOrEmpty(serr))
-            //        {
-            //            pi.ErrorMessage = serr;
-            //        }
-            //    }
-            //    else if (!String.IsNullOrEmpty(serr) && String.IsNullOrEmpty(pi.WarnMessage))
-            //        pi.WarnMessage = serr;
-            //}
+            // Planets
+            foreach (var planet in definition.Planets)
+            {
+                //if (planet == Planet.Earth) continue;   // Exclude Earth if geo or topo
+                //serr = null;
+                //var pi = new PlanetValues() {
+                //    Planet = planet
+                //};
+                //result.Planets.Add(pi);
+                //// Ecliptic position
+                //if (planet == Planet.FixedStar)
+                //{
+                //    iflgret = sweph.swe_fixstar(star, result.EphemerisTime, x, ref serr);
+                //    pi.PlanetName = star;
+                //}
+                //else
+                //{
+                //    iflgret = sweph.swe_calc(result.EphemerisTime, planet, x, ref serr);
+                //    pi.PlanetName = sweph.swe_get_planet_name(planet);
+                //    if (planet.IsAsteroid)
+                //    {
+                //        pi.PlanetName = String.Format("#{0}", planet - Planet.FirstAsteroid);
+                //    }
+                //}
+                //if (iflgret >= 0)
+                //{
+                //    pi.Longitude = x[0];
+                //    pi.Latitude = x[1];
+                //    pi.Distance = x[2];
+                //    pi.LongitudeSpeed = x[3];
+                //    pi.LatitudeSpeed = x[4];
+                //    pi.DistanceSpeed = x[5];
+                //    pi.HousePosition = sweph.swe_house_pos(result.ARMC, input.Latitude, result.TrueEclipticObliquity, x, ref serr);
+                //    if (pi.HousePosition == 0)
+                //        iflgret = SwissEph.ERR;
+                //}
+                //if (iflgret < 0)
+                //{
+                //    if (!String.IsNullOrEmpty(serr))
+                //    {
+                //        pi.ErrorMessage = serr;
+                //    }
+                //}
+                //else if (!String.IsNullOrEmpty(serr) && String.IsNullOrEmpty(pi.WarnMessage))
+                //    pi.WarnMessage = serr;
+            }
             ///*
             //    //* equator position * /
             //    if (fmt.IndexOfAny("aADdQ".ToCharArray()) >= 0) {
