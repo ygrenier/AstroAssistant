@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstroEngine.cs" />
+    <Compile Include="Bodies\Planet.cs" />
     <Compile Include="DateDefinition.cs" />
     <Compile Include="Date\EphemerisTime.cs" />
     <Compile Include="Date\JulianDay.cs" />

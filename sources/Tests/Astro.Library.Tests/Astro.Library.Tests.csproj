@@ -66,6 +66,7 @@
     <Compile Include="LatitudeTest.cs" />
     <Compile Include="LongitudeTest.cs" />
     <Compile Include="NatalChartDefinitionTest.cs" />
+    <Compile Include="PlanetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
