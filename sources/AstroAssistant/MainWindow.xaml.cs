@@ -29,7 +29,7 @@ namespace AstroAssistant
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new ViewModels.MainViewModel();
+            DataContext = AppContext.Current.CreateViewModel<ViewModels.MainViewModel>();
             ViewModel.Initialize();
         }
 

@@ -46,5 +46,19 @@ namespace AstroAssistant
 
         #endregion
 
+        #region Gestion des dépendances
+
+        /// <summary>
+        /// Récupération d'un service
+        /// </summary>
+        public abstract T GetService<T>() where T : class;
+
+        /// <summary>
+        /// Création d'un viewmodel
+        /// </summary>
+        public abstract T CreateViewModel<T>() where T : ViewModels.ViewModel;
+
+        #endregion
+
     }
 }
