@@ -14,6 +14,8 @@ namespace AstroAssistant.Core.Tests
         public void TestCreate()
         {
             var vm = new NatalChartViewModel();
+            Assert.Null(vm.FileName);
+            Assert.False(vm.IsDirty);
         }
     }
 }

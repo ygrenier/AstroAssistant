@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppContextBuilderNotDefined" xml:space="preserve">
+    <value>Le constructeur de contexte d'application n'est pas défini.</value>
+  </data>
+  <data name="AppContextBuildFailed" xml:space="preserve">
+    <value>Echec de création d'un contexte d'application.</value>
+  </data>
   <data name="WrongExpressionMessage" xml:space="preserve">
     <value>Expression invalide. Doit être appelé avec une expression de type
 n() =&gt; PropertyName</value>

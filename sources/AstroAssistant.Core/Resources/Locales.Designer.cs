@@ -61,6 +61,24 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le constructeur de contexte d&apos;application n&apos;est pas défini..
+        /// </summary>
+        internal static string AppContextBuilderNotDefined {
+            get {
+                return ResourceManager.GetString("AppContextBuilderNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Echec de création d&apos;un contexte d&apos;application..
+        /// </summary>
+        internal static string AppContextBuildFailed {
+            get {
+                return ResourceManager.GetString("AppContextBuildFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Expression invalide. Doit être appelé avec une expression de type
         ///n() =&gt; PropertyName.
         /// </summary>

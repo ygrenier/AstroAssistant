@@ -24,7 +24,30 @@ namespace AstroAssistant.ViewModels
             //    Planet.MeanApog, Planet.OscuApog, Planet.Earth
             //});
             //Planets.AddRange(new Planet[] { Planet.AsAsteroid(433), Planet.AsAsteroid(3045), Planet.AsAsteroid(7066) });
+            FileName = null;
+            IsDirty = false;
         }
+
+        /// <summary>
+        /// Nom du fichier
+        /// </summary>
+        public String FileName
+        {
+            get { return _FileName; }
+            private set { SetProperty(ref _FileName, value, () => FileName); }
+        }
+        private String _FileName;
+
+        /// <summary>
+        /// Indique si le modèle doit être enregistré
+        /// </summary>
+        public bool IsDirty
+        {
+            get { return _IsDirty; }
+            private set { SetProperty(ref _IsDirty, value, () => IsDirty); }
+        }
+        private bool _IsDirty;
+
     }
 
 }
