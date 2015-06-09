@@ -43,6 +43,11 @@ namespace Astro
         public String Name { get; set; }
 
         /// <summary>
+        /// Genre
+        /// </summary>
+        public Gender Gender { get; set; }
+
+        /// <summary>
         /// Date de naissance
         /// </summary>
         public DateDefinition BirthDate { get; private set; }

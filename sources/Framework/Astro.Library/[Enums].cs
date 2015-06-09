@@ -42,4 +42,13 @@ namespace Astro
         APC
     }
 
+    /// <summary>
+    /// Genre
+    /// </summary>
+    public enum Gender
+    {
+        Female,
+        Male
+    }
+
 }
