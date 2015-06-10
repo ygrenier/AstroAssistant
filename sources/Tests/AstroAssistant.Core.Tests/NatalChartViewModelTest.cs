@@ -1,4 +1,6 @@
-﻿using AstroAssistant.ViewModels;
+﻿using AstroAssistant.Services;
+using AstroAssistant.ViewModels;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,8 @@ namespace AstroAssistant.Core.Tests
         [Fact]
         public void TestCreate()
         {
-            var vm = new NatalChartViewModel();
+            var fs = new Mock<IFileService>().Object;
+            var vm = new NatalChartViewModel(fs);
             Assert.Null(vm.FileName);
             Assert.False(vm.IsDirty);
         }

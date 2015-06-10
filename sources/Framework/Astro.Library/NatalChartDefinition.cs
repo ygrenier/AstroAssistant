@@ -76,6 +76,7 @@ namespace Astro
         /// Liste des planètes
         /// </summary>
         public List<Planet> Planets { get; private set; }
+
     }
 
 }

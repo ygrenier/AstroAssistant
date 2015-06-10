@@ -10,6 +10,7 @@
 
 namespace AstroAssistant.Resources {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -39,7 +40,7 @@ namespace AstroAssistant.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AstroAssistant.Resources.Locales", typeof(Locales).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AstroAssistant.Resources.Locales", typeof(Locales).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

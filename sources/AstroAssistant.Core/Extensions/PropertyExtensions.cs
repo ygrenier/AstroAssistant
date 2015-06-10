@@ -55,14 +55,14 @@ namespace AstroAssistant
             // Reject the member from another class
             if (target != null && member.DeclaringType != null)
             {
-                if (!member.DeclaringType.IsAssignableFrom(target.GetType()))
+                if (!member.DeclaringType.GetTypeInfo().IsAssignableFrom(target.GetType().GetTypeInfo()))
                 {
                     throw new ArgumentException(global::AstroAssistant.Resources.Locales.WrongExpressionMessage, "expression");
                 }
             }
 
             // Reject static member
-            if (member.GetGetMethod(true).IsStatic)
+            if (member.GetMethod.IsStatic)
             {
                 throw new ArgumentException(global::AstroAssistant.Resources.Locales.WrongExpressionMessage, "expression");
             }
