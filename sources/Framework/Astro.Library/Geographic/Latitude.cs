@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Astro
 {
@@ -76,6 +77,45 @@ namespace Astro
         public override string ToString()
         {
             return String.Format("{0}{3}{1:D2}'{2:D2}\"", Degrees, Minutes, Seconds, Polarity.ToString()[0]);
+        }
+
+        /// <summary>
+        /// Converti une représentation chaîne en latitude
+        /// </summary>
+        public static Latitude Parse(String s)
+        {
+            Latitude result;
+            if (TryParse(s, out result))
+                return result;
+            throw new FormatException();
+        }
+
+        /// <summary>
+        /// Converti une représentation chaîne en latitude
+        /// </summary>
+        public static bool TryParse(String s, out Latitude result)
+        {
+            result = new Latitude();
+            if (String.IsNullOrWhiteSpace(s)) 
+                return false;
+            Regex re = new Regex(@"^(?<deg>\d+)(?<pol>N|S)(?<min>\d+')?(?<sec>\d+"")?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            var match = re.Match(s);
+            if (match.Success)
+            {
+                int deg = int.Parse(match.Groups["deg"].Value);
+                String pol = match.Groups["pol"].Value.ToUpper();
+                String t = match.Groups["min"].Value;
+                int min = String.IsNullOrWhiteSpace(t) ? 0 : int.Parse(t.Substring(0, t.Length - 1));
+                t = match.Groups["sec"].Value;
+                int sec = String.IsNullOrWhiteSpace(t) ? 0 : int.Parse(t.Substring(0, t.Length - 1));
+                try
+                {
+                    result = new Latitude(deg, min, sec, pol == "S" ? LatitudePolarity.South : LatitudePolarity.North);
+                    return true;
+                }
+                catch { }
+            }
+            return false;
         }
 
         /// <summary>

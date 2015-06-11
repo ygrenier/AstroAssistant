@@ -111,5 +111,48 @@ namespace Astro.Library.Tests
 
         }
 
+        [Fact]
+        public void TestParse()
+        {
+            Latitude lat = Latitude.Parse("1N");
+            Assert.Equal(1.0, (Double)lat);
+            lat = Latitude.Parse("1N23'");
+            Assert.Equal(1.38333333333333, (Double)lat, 14);
+            lat = Latitude.Parse("1N23\"");
+            Assert.Equal(1.00638888888889, (Double)lat, 14);
+            lat = Latitude.Parse("1N23'45\"");
+            Assert.Equal(1.39583333333333, (Double)lat, 14);
+            lat = Latitude.Parse("2s");
+            Assert.Equal(-2.0, (Double)lat);
+
+            Assert.Throws<FormatException>(() => Latitude.Parse(null));
+            Assert.Throws<FormatException>(() => Latitude.Parse(""));
+            Assert.Throws<FormatException>(() => Latitude.Parse("1"));
+            Assert.Throws<FormatException>(() => Latitude.Parse("1N88'"));
+            Assert.Throws<FormatException>(() => Latitude.Parse("1N22'88\""));
+        }
+
+        [Fact]
+        public void TestTryParse()
+        {
+            Latitude lat;
+            Assert.True(Latitude.TryParse("1N", out lat));
+            Assert.Equal(1.0, (Double)lat);
+            Assert.True(Latitude.TryParse("1N23'", out lat));
+            Assert.Equal(1.38333333333333, (Double)lat, 14);
+            Assert.True(Latitude.TryParse("1N23\"", out lat));
+            Assert.Equal(1.00638888888889, (Double)lat, 14);
+            Assert.True(Latitude.TryParse("1N23'45\"", out lat));
+            Assert.Equal(1.39583333333333, (Double)lat, 14);
+            Assert.True(Latitude.TryParse("2s", out lat));
+            Assert.Equal(-2.0, (Double)lat);
+
+            Assert.False(Latitude.TryParse(null, out lat));
+            Assert.False(Latitude.TryParse("", out lat));
+            Assert.False(Latitude.TryParse("1", out lat));
+            Assert.False(Latitude.TryParse("1N88'", out lat));
+            Assert.False(Latitude.TryParse("1N22'88\"", out lat));
+        }
+
     }
 }

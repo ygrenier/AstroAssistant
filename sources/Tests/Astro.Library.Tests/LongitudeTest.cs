@@ -111,5 +111,48 @@ namespace Astro.Library.Tests
 
         }
 
+        [Fact]
+        public void TestParse()
+        {
+            Longitude lat = Longitude.Parse("1E");
+            Assert.Equal(1.0, (Double)lat);
+            lat = Longitude.Parse("1E23'");
+            Assert.Equal(1.38333333333333, (Double)lat, 14);
+            lat = Longitude.Parse("1E23\"");
+            Assert.Equal(1.00638888888889, (Double)lat, 14);
+            lat = Longitude.Parse("1E23'45\"");
+            Assert.Equal(1.39583333333333, (Double)lat, 14);
+            lat = Longitude.Parse("2w");
+            Assert.Equal(-2.0, (Double)lat);
+
+            Assert.Throws<FormatException>(() => Longitude.Parse(null));
+            Assert.Throws<FormatException>(() => Longitude.Parse(""));
+            Assert.Throws<FormatException>(() => Longitude.Parse("1"));
+            Assert.Throws<FormatException>(() => Longitude.Parse("1E88'"));
+            Assert.Throws<FormatException>(() => Longitude.Parse("1E22'88\""));
+        }
+
+        [Fact]
+        public void TestTryParse()
+        {
+            Longitude lat;
+            Assert.True(Longitude.TryParse("1E", out lat));
+            Assert.Equal(1.0, (Double)lat);
+            Assert.True(Longitude.TryParse("1E23'", out lat));
+            Assert.Equal(1.38333333333333, (Double)lat, 14);
+            Assert.True(Longitude.TryParse("1E23\"", out lat));
+            Assert.Equal(1.00638888888889, (Double)lat, 14);
+            Assert.True(Longitude.TryParse("1E23'45\"", out lat));
+            Assert.Equal(1.39583333333333, (Double)lat, 14);
+            Assert.True(Longitude.TryParse("2w", out lat));
+            Assert.Equal(-2.0, (Double)lat);
+
+            Assert.False(Longitude.TryParse(null, out lat));
+            Assert.False(Longitude.TryParse("", out lat));
+            Assert.False(Longitude.TryParse("1", out lat));
+            Assert.False(Longitude.TryParse("1E88'", out lat));
+            Assert.False(Longitude.TryParse("1E22'88\"", out lat));
+        }
+
     }
 }
