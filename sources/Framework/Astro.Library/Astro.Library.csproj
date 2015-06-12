@@ -51,6 +51,7 @@
     <Compile Include="Geographic\Longitude.cs" />
     <Compile Include="Houses\HouseValues.cs" />
     <Compile Include="IEphemerisProvider.cs" />
+    <Compile Include="ITimeZoneProvider.cs" />
     <Compile Include="NatalChart.cs" />
     <Compile Include="NatalChartDefinition.cs" />
     <Compile Include="NatalChartSerializer.cs" />

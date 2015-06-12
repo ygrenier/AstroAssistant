@@ -9,8 +9,93 @@ namespace Astro
     /// <summary>
     /// Définition d'une date
     /// </summary>
-    public class DateDefinition
+    public class DateDefinition : IEquatable<DateDefinition>
     {
+        /// <summary>
+        /// Création d'une nouvelle définition de date
+        /// </summary>
+        public DateDefinition()
+        {
+        }
+
+        /// <summary>
+        /// Création d'une nouvelle définition de date basée sur un DateTimeOffset
+        /// </summary>
+        public DateDefinition(DateTimeOffset date, DayLightDefinition? dayLight = null)
+        {
+            SetDate(date, dayLight);
+        }
+
+        /// <summary>
+        /// Création d'une nouvelle définition de date basée sur un DateTime
+        /// </summary>
+        public DateDefinition(DateTime date, DayLightDefinition? dayLight = null)
+        {
+            SetDate(date, dayLight);
+        }
+
+        /// <summary>
+        /// Test l'égalité
+        /// </summary>
+        public bool Equals(DateDefinition other)
+        {
+            if (other == null) return false;
+            if (other == this) return true;
+            if (this.TimeZone == null && other.TimeZone == null)
+            {
+                if (this.UtcOffset != other.UtcOffset) return false;
+            }
+            else if (this.TimeZone != null && other.TimeZone != null)
+            {
+                if (!String.Equals(this.TimeZone.StandardName, other.TimeZone.StandardName, StringComparison.OrdinalIgnoreCase))
+                    return false;
+            }
+            else
+                return false;
+            return this.Year == other.Year
+                && this.Month == other.Month
+                && this.Day == other.Day
+                && this.Hour == other.Hour
+                && this.Minute == other.Minute
+                && this.Second == other.Second
+                && this.MilliSecond == other.MilliSecond
+                && this.DayLight == other.DayLight
+                ;
+        }
+
+        /// <summary>
+        /// Défini la date
+        /// </summary>
+        public void SetDate(DateTimeOffset date, DayLightDefinition? dayLight = null)
+        {
+            this.Year = date.Year;
+            this.Month = date.Month;
+            this.Day = date.Day;
+            this.Hour = date.Hour;
+            this.Minute = date.Minute;
+            this.Second = date.Second;
+            this.MilliSecond = date.Millisecond;
+            this.UtcOffset = date.Offset;
+            this.TimeZone = null;
+            this.DayLight = dayLight ?? this.DayLight;
+        }
+
+        /// <summary>
+        /// Défini la date
+        /// </summary>
+        public void SetDate(DateTime date, DayLightDefinition? dayLight = null)
+        {
+            this.Year = date.Year;
+            this.Month = date.Month;
+            this.Day = date.Day;
+            this.Hour = date.Hour;
+            this.Minute = date.Minute;
+            this.Second = date.Second;
+            this.MilliSecond = date.Millisecond;
+            this.UtcOffset = TimeSpan.Zero;
+            this.TimeZone = date.Kind == DateTimeKind.Utc ? TimeZoneInfo.Utc : TimeZoneInfo.Local;
+            this.DayLight = dayLight ?? this.DayLight;
+        }
 
         /// <summary>
         /// Calcul l'offset complet
@@ -45,6 +130,14 @@ namespace Astro
         public DateTimeOffset ToDateTimeOffset()
         {
             return new DateTimeOffset(Year, Month, Day, Hour, Minute, Second, MilliSecond, GetDateOffset());
+        }
+
+        /// <summary>
+        /// En DateTime
+        /// </summary>
+        public DateTime ToDateTime()
+        {
+            return ToDateTimeOffset().DateTime;
         }
 
         /// <summary>
@@ -87,6 +180,7 @@ namespace Astro
         /// Heure d'été
         /// </summary>
         public DayLightDefinition DayLight { get; set; }
+
     }
 
     /// <summary>
