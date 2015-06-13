@@ -44,7 +44,7 @@
         <Fluent:Ribbon DockPanel.Dock="Top">
             <Fluent:RibbonTabItem Header="{lex:Loc MainRibbon_TabHome_Header}">
                 <Fluent:RibbonGroupBox Header="{lex:Loc MainRibbon_TabHome_GroupTheme_Header}">
-                    <Fluent:Button Size="Large" Header="{lex:Loc MainRibbon_ButtonNewTheme_Header}" />
+                    <Fluent:Button Size="Large" Header="{lex:Loc MainRibbon_ButtonNewTheme_Header}" Command="{Binding NewNatalChartCommand, Mode=OneWay}" />
                     <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonOpenTheme_Header}"/>
                     <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonSaveTheme_Header}"/>
                     <Fluent:Button Size="Middle" Header="{lex:Loc MainRibbon_ButtonSaveAsTheme_Header}"/>

@@ -80,6 +80,24 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Voulez-vous enregistrer les modifications ?.
+        /// </summary>
+        internal static string SaveChangesDialogMessage {
+            get {
+                return ResourceManager.GetString("SaveChangesDialogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enregistrer les modifications.
+        /// </summary>
+        internal static string SaveChangesDialogTitle {
+            get {
+                return ResourceManager.GetString("SaveChangesDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Expression invalide. Doit être appelé avec une expression de type
         ///n() =&gt; PropertyName.
         /// </summary>

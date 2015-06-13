@@ -19,7 +19,15 @@ namespace AstroAssistant.ViewModels
         public MainViewModel(Services.IAstroService astroService, Services.IDialogService dialogService, Services.IResolverService resolverService)
             : base(astroService, dialogService, resolverService)
         {
+            NewNatalChartCommand = new RelayCommand(async () => {
+                await NewNatalChart();
+            });
         }
+
+        /// <summary>
+        /// Commande pour créer un nouveau thème astral
+        /// </summary>
+        public RelayCommand NewNatalChartCommand { get; private set; }
 
     }
 

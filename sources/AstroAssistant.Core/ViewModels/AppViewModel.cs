@@ -1,7 +1,9 @@
-﻿using System;
+﻿using AstroAssistant.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AstroAssistant.ViewModels
 {
@@ -31,6 +33,46 @@ namespace AstroAssistant.ViewModels
         /// Initialisation
         /// </summary>
         public virtual void Initialize() { }
+
+        /// <summary>
+        /// Ouverture d'un nouveau thème astral vierge
+        /// </summary>
+        public async Task<bool> NewNatalChart()
+        {
+            Exception error = null;
+            try
+            {
+                // Si le thème actuel est à sauvegarder
+                if (CurrentNatalChart.IsDirty)
+                {
+                    // On demande à l'utilisateur ce qu'il veut faire
+                    var cr = await DialogService.Confirm(
+                        AstroAssistant.Resources.Locales.SaveChangesDialogTitle, 
+                        AstroAssistant.Resources.Locales.SaveChangesDialogMessage, 
+                        DialogConfirmType.YesNoCancel);
+                    if (cr == DialogConfirmResult.Cancel) return false;
+                    if (cr == DialogConfirmResult.Yes)
+                    {
+                        if (!await CurrentNatalChart.Save())
+                        {
+                            return false;
+                        }
+                    }
+                }
+                // On réinitialise le thème
+                CurrentNatalChart.Reset();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex;
+            }
+            if (error != null)
+            {
+                await DialogService.ShowError(error);
+            }
+            return false;
+        }
 
         /// <summary>
         /// Service Astro

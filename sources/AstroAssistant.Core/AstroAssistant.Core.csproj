@@ -49,6 +49,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Locales.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Locales.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Locales.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\AstroService.cs" />
     <Compile Include="Services\FileInformation.cs" />
     <Compile Include="Services\IAstroService.cs" />
@@ -61,6 +66,10 @@
     <Compile Include="ViewModels\ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Locales.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Locales.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Locales.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Locales.Designer.cs</LastGenOutput>

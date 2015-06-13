@@ -75,6 +75,45 @@ namespace AstroAssistant
         }
         #endregion
 
+        #region IDialogService
+        Task<Services.DialogConfirmResult> Services.IDialogService.Confirm(string title, string message, Services.DialogConfirmType dialogType)
+        {
+            MessageBoxResult result;
+            switch (dialogType)
+            {
+                case AstroAssistant.Services.DialogConfirmType.YesNoCancel:
+                    result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    break;
+                default:
+                case AstroAssistant.Services.DialogConfirmType.YesNo:
+                    result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    break;
+            }
+            switch (result)
+            {
+                case MessageBoxResult.Cancel:
+                    return Task.FromResult(Services.DialogConfirmResult.Cancel);
+                case MessageBoxResult.No:
+                    return Task.FromResult(Services.DialogConfirmResult.No);
+                case MessageBoxResult.OK:
+                case MessageBoxResult.Yes:
+                    return Task.FromResult(Services.DialogConfirmResult.Yes);
+                case MessageBoxResult.None:
+                default:
+                    return Task.FromResult(Services.DialogConfirmResult.Cancel);
+            }
+        }
+
+        Task Services.IDialogService.ShowError(Exception error, string title)
+        {
+            if (error != null)
+            {
+                MessageBox.Show(error.GetBaseException().Message, title ?? AstroAssistant.Resources.Locales.DefaultShowErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return Task.FromResult(true);
+        }
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();

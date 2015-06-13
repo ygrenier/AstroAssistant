@@ -61,6 +61,15 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur.
+        /// </summary>
+        internal static string DefaultShowErrorTitle {
+            get {
+                return ResourceManager.GetString("DefaultShowErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Fermer.
         /// </summary>
         internal static string MainRibbon_ButtonCloseTheme_Header {

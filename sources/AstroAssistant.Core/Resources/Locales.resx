@@ -131,4 +131,10 @@ n() =&gt; PropertyName</value>
     <value>Expression unaire invalide. Doit être appelé avec une expression de type
 n() =&gt; PropertyName</value>
   </data>
+  <data name="SaveChangesDialogMessage" xml:space="preserve">
+    <value>Voulez-vous enregistrer les modifications ?</value>
+  </data>
+  <data name="SaveChangesDialogTitle" xml:space="preserve">
+    <value>Enregistrer les modifications</value>
+  </data>
 </root>
