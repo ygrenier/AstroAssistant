@@ -83,6 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Locales.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\EphemerisService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\DateInputControl.xaml.cs">
       <DependentUpon>DateInputControl.xaml</DependentUpon>

@@ -20,7 +20,11 @@ namespace AstroAssistant.ViewModels
         /// <summary>
         /// Création d'un nouveau ViewModel de thème
         /// </summary>
-        public NatalChartViewModel(IFileService fileService, ITimeZoneProvider tzProvider)
+        public NatalChartViewModel(
+            IFileService fileService, 
+            ITimeZoneProvider tzProvider, 
+            IAstroService astroService
+            )
         {
             Definition = new NatalChartDefinition();
             //DateUT = new DateUT(DateTime.Now);
@@ -34,6 +38,7 @@ namespace AstroAssistant.ViewModels
             //    Planet.MeanApog, Planet.OscuApog, Planet.Earth
             //});
             //Planets.AddRange(new Planet[] { Planet.AsAsteroid(433), Planet.AsAsteroid(3045), Planet.AsAsteroid(7066) });
+            this.AstroService = astroService;
             _FileService = fileService;
             _TimeZoneProvider = tzProvider;
             FileName = null;
@@ -205,6 +210,10 @@ namespace AstroAssistant.ViewModels
         }
         private bool _IsDirty;
 
+        /// <summary>
+        /// Service Astro
+        /// </summary>
+        public IAstroService AstroService { get; private set; }
     }
 
 }

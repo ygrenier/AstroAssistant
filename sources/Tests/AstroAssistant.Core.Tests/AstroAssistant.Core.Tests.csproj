@@ -58,11 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContextTest.cs" />
-    <Compile Include="AppViewModelTest.cs" />
-    <Compile Include="FileInformationTest.cs" />
-    <Compile Include="NatalChartViewModelTest.cs" />
+    <Compile Include="Services\AstroServiceTest.cs" />
+    <Compile Include="ViewModels\AppViewModelTest.cs" />
+    <Compile Include="Services\FileInformationTest.cs" />
+    <Compile Include="ViewModels\NatalChartViewModelTest.cs" />
     <Compile Include="PropertyExtensionsTest.cs" />
-    <Compile Include="ViewModelTest.cs" />
+    <Compile Include="ViewModels\ViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,8 @@ namespace AstroAssistant.Core.Tests
         public void TestCreate()
         {
             var fs = new Mock<IFileService>().Object;
-            var vm = new NatalChartViewModel(fs, null);
+            var ass = new Mock<IAstroService>().Object;
+            var vm = new NatalChartViewModel(fs, null, ass);
             Assert.Null(vm.FileName);
             Assert.NotNull(vm.Definition);
             Assert.Null(vm.NatalChart);
@@ -48,7 +49,8 @@ namespace AstroAssistant.Core.Tests
                 .Setup(f => f.OpenLoadAsNatalChart())
                 .Returns(() => Task.FromResult(new FileInformation("file.ext", new MemoryStream(Encoding.UTF8.GetBytes(NatalChart1)))));
             var fs = fsMock.Object;
-            var vm = new NatalChartViewModel(fs, null);
+            var ass = new Mock<IAstroService>().Object;
+            var vm = new NatalChartViewModel(fs, null, ass);
             Assert.True(await vm.LoadFromFile());
             Assert.NotNull(vm.FileName);
             Assert.NotNull(vm.Definition);
@@ -79,7 +81,8 @@ namespace AstroAssistant.Core.Tests
                 .Setup(f => f.OpenLoadNatalChart(It.IsAny<String>()))
                 .Returns<String>(n => Task.FromResult(new FileInformation(n, new MemoryStream(Encoding.UTF8.GetBytes(NatalChart1)))));
             var fs = fsMock.Object;
-            var vm = new NatalChartViewModel(fs, null);
+            var ass = new Mock<IAstroService>().Object;
+            var vm = new NatalChartViewModel(fs, null, ass);
             vm.IsDirty = true;
             Assert.Null(vm.FileName);
             Assert.True(await vm.LoadFromFile());
@@ -104,7 +107,7 @@ namespace AstroAssistant.Core.Tests
                 .Setup(f => f.OpenLoadAsNatalChart())
                 .Returns(Task.Delay(100).ContinueWith<FileInformation>(_ => new FileInformation("file.ext", new MemoryStream(Encoding.UTF8.GetBytes(NatalChart1)))));
             fs = fsMock.Object;
-            vm = new NatalChartViewModel(fs, null);
+            vm = new NatalChartViewModel(fs, null, ass);
             var task = vm.LoadFromFile();
             vm.IsDirty = true;
             Assert.True(vm.IsBusy);
@@ -127,7 +130,8 @@ namespace AstroAssistant.Core.Tests
                 .Setup(f => f.OpenSaveNatalChart(It.IsAny<String>()))
                 .Returns<String>(n => Task.FromResult(new FileInformation(n, new MemoryStream())));
             var fs = fsMock.Object;
-            var vm = new NatalChartViewModel(fs, null);
+            var ass = new Mock<IAstroService>().Object;
+            var vm = new NatalChartViewModel(fs, null, ass);
             vm.IsDirty = true;
             Assert.Null(vm.FileName);
             Assert.True(await vm.Save());
@@ -153,7 +157,7 @@ namespace AstroAssistant.Core.Tests
                 .Setup(f => f.OpenSaveAsNatalChart())
                 .Returns(() => Task.Delay(100).ContinueWith<FileInformation>(_ => new FileInformation("file.ext", new MemoryStream())));
             fs = fsMock.Object;
-            vm = new NatalChartViewModel(fs, null);
+            vm = new NatalChartViewModel(fs, null, ass);
             var task = vm.Save();
             vm.IsDirty = true;
             Assert.True(vm.IsBusy);
