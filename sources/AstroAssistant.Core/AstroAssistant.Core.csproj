@@ -52,8 +52,10 @@
     <Compile Include="Services\AstroService.cs" />
     <Compile Include="Services\FileInformation.cs" />
     <Compile Include="Services\IAstroService.cs" />
+    <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IEphemerisService.cs" />
     <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\IResolverService.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\NatalChartViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />

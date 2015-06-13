@@ -16,8 +16,8 @@ namespace AstroAssistant.ViewModels
         /// <summary>
         /// Nouveau ViewModel principal
         /// </summary>
-        public MainViewModel(Services.IAstroService astroService)
-            : base(astroService)
+        public MainViewModel(Services.IAstroService astroService, Services.IDialogService dialogService, Services.IResolverService resolverService)
+            : base(astroService, dialogService, resolverService)
         {
         }
 

@@ -18,17 +18,30 @@ namespace AstroAssistant.Core.Tests
         public void TestCreate()
         {
             var ass = new Mock<IAstroService>().Object;
-            var viewmodel = new AppViewModel(ass);
+            var ds = new Mock<IDialogService>().Object;
+            var rsMock = new Mock<IResolverService>();
+            rsMock
+                .Setup(p => p.CreateViewModel<NatalChartViewModel>())
+                .Returns(() => new NatalChartViewModel(new Mock<IFileService>().Object, new Mock<ITimeZoneProvider>().Object, ass));
+            var rs = rsMock.Object;
+            var viewmodel = new AppViewModel(ass, ds, rs);
             Assert.Same(ass, viewmodel.AstroService);
+            Assert.Same(ds, viewmodel.DialogService);
+            Assert.NotNull(viewmodel.CurrentNatalChart);
 
-            Assert.Throws<ArgumentNullException>(() => new AppViewModel(null));
+            Assert.Throws<ArgumentNullException>(() => new AppViewModel(null, ds, rs));
+            Assert.Throws<ArgumentNullException>(() => new AppViewModel(ass, null, rs));
+            Assert.Throws<ArgumentNullException>(() => new AppViewModel(ass, ds, null));
         }
 
         [Fact]
         public void TestInitialize()
         {
             var ass = new Mock<IAstroService>().Object;
-            var viewmodel = new AppViewModel(ass);
+            var ds = new Mock<IDialogService>().Object;
+            var rsMock = new Mock<IResolverService>();
+            var rs = rsMock.Object;
+            var viewmodel = new AppViewModel(ass, ds, rs);
             viewmodel.Initialize();
         }
 

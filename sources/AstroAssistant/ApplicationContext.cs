@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using AstroAssistant.Services;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,14 @@ namespace AstroAssistant
     public class ApplicationContext : AppContext
     {
         IContainer _CurrentContainer;
+        App _App;
 
         /// <summary>
         /// Création d'un nouveau contexte
         /// </summary>
-        public ApplicationContext()
+        public ApplicationContext(App app)
         {
+            _App = app;
             BuildContainer();
         }
 
@@ -37,6 +40,24 @@ namespace AstroAssistant
                 .Where(tp => tp.Name.EndsWith("Service", StringComparison.OrdinalIgnoreCase))
                 .AsImplementedInterfaces()
                 .AsSelf()
+                .SingleInstance()
+                ;
+            // Enregistrement des Providers
+            builder
+                .RegisterAssemblyTypes(asm)
+                .Where(tp => tp.Name.EndsWith("Provider", StringComparison.OrdinalIgnoreCase))
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance()
+                ;
+            // Enregistre toutes les interfaces qu'implémente MainWindow
+            builder.RegisterInstance(_App.MainWindow)
+                .AsImplementedInterfaces()
+                .SingleInstance()
+                ;
+            // Enregistre l'interface de résolution de dépendance depuis ce contexte
+            builder.RegisterInstance(this)
+                .AsImplementedInterfaces()
                 .SingleInstance()
                 ;
             // Enregistrement des ViewModels

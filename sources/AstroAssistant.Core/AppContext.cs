@@ -8,7 +8,7 @@ namespace AstroAssistant
     /// <summary>
     /// Contexte d'une application
     /// </summary>
-    public abstract class AppContext
+    public abstract class AppContext : Services.IResolverService
     {
 
         #region Gestion du contexte static
@@ -24,7 +24,7 @@ namespace AstroAssistant
             if (_AppContextBuilder == null)
                 throw new InvalidOperationException(Resources.Locales.AppContextBuilderNotDefined);
             var result = _AppContextBuilder();
-            if(result==null)
+            if (result == null)
                 throw new InvalidOperationException(Resources.Locales.AppContextBuildFailed);
             return result;
         }

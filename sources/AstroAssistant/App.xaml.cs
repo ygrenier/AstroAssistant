@@ -17,7 +17,7 @@ namespace AstroAssistant
         {
             base.OnStartup(e);
             AppContext.Build(() => {
-                return new ApplicationContext();
+                return new ApplicationContext(this);
             });
         }
     }
