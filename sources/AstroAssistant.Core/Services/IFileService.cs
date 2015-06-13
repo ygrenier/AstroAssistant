@@ -12,6 +12,15 @@ namespace AstroAssistant.Services
     /// </summary>
     public interface IFileService
     {
+        /// <summary>
+        /// Sélectionne un fichier pour la lecture d'un thème
+        /// </summary>
+        Task<FileInformation> OpenLoadAsNatalChart();
+
+        /// <summary>
+        /// Ouvre un fichier pour une lecture
+        /// </summary>
+        Task<FileInformation> OpenLoadNatalChart(String fileName);
 
         /// <summary>
         /// Sélectionne un fichier pour l'enregistrement d'un thème
@@ -21,7 +30,7 @@ namespace AstroAssistant.Services
         /// <summary>
         /// Ouvre un fichier pour un enregistrement
         /// </summary>
-        Task<FileInformation> OpenSave(String fileName);
+        Task<FileInformation> OpenSaveNatalChart(String fileName);
 
     }
 

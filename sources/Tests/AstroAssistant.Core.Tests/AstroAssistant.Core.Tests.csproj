@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="AppContextTest.cs" />
     <Compile Include="AppViewModelTest.cs" />
+    <Compile Include="FileInformationTest.cs" />
     <Compile Include="NatalChartViewModelTest.cs" />
     <Compile Include="PropertyExtensionsTest.cs" />
     <Compile Include="ViewModelTest.cs" />

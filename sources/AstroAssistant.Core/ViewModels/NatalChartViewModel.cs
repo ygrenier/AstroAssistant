@@ -15,11 +15,12 @@ namespace AstroAssistant.ViewModels
     public class NatalChartViewModel : ViewModel
     {
         IFileService _FileService;
+        ITimeZoneProvider _TimeZoneProvider;
 
         /// <summary>
         /// Création d'un nouveau ViewModel de thème
         /// </summary>
-        public NatalChartViewModel(IFileService fileService)
+        public NatalChartViewModel(IFileService fileService, ITimeZoneProvider tzProvider)
         {
             Definition = new NatalChartDefinition();
             //DateUT = new DateUT(DateTime.Now);
@@ -34,6 +35,7 @@ namespace AstroAssistant.ViewModels
             //});
             //Planets.AddRange(new Planet[] { Planet.AsAsteroid(433), Planet.AsAsteroid(3045), Planet.AsAsteroid(7066) });
             _FileService = fileService;
+            _TimeZoneProvider = tzProvider;
             FileName = null;
             IsDirty = false;
         }
@@ -43,30 +45,79 @@ namespace AstroAssistant.ViewModels
         /// </summary>
         public void Reset()
         {
+            Definition = new NatalChartDefinition();
+            NatalChart = null;
             FileName = null;
+            IsDirty = false;
+        }
+
+        async Task LoadFromFile(FileInformation fileInfos)
+        {
+            var ser = new NatalChartSerializer(_TimeZoneProvider);
+            Definition = await ser.Deserialize(fileInfos.Stream);
+            NatalChart = new Astro.NatalChart();
+            RaisePropertyChanged(() => Definition);
+            RaisePropertyChanged(() => NatalChart);
+            FileName = fileInfos.FileName;
             IsDirty = false;
         }
 
         /// <summary>
         /// Provoque le chargement du thème depuis un sélecteur de fichier
         /// </summary>
-        public void LoadFromFile()
+        public async Task<bool> LoadFromFile()
         {
-
+            if (IsBusy) return false;
+            IsBusy = true;
+            try
+            {
+                using (var fileInfos = await _FileService.OpenLoadAsNatalChart())
+                {
+                    if (fileInfos == null) return false;
+                    await LoadFromFile(fileInfos);
+                }
+                return true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         /// <summary>
         /// Provoque le chargement du thème depuis un nom de fichier
         /// </summary>
-        public void LoadFromFile(String fileName)
+        public async Task<bool> LoadFromFile(String fileName)
         {
+            if (IsBusy) return false;
+            IsBusy = true;
+            try
+            {
+                using (var fileInfos = await _FileService.OpenLoadNatalChart(fileName))
+                {
+                    if (fileInfos == null) return false;
+                    await LoadFromFile(fileInfos);
+                }
+                return true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
 
+        async Task SaveToFile(FileInformation fileInfo)
+        {
+            NatalChartSerializer ser = new NatalChartSerializer(_TimeZoneProvider);
+            await ser.Serialize(Definition, fileInfo.Stream);
+            FileName = fileInfo.FileName;
+            IsDirty = false;
         }
 
         /// <summary>
         /// Enregistre le thème dans le fichier en cours
         /// </summary>
-        public Task Save()
+        public Task<bool> Save()
         {
             return String.IsNullOrWhiteSpace(FileName) ? SaveAs() : SaveAs(FileName);
         }
@@ -82,10 +133,7 @@ namespace AstroAssistant.ViewModels
             {
                 using (var fileInfo = await _FileService.OpenSaveAsNatalChart())
                 {
-                    NatalChartSerializer ser = new NatalChartSerializer();
-                    await ser.Serialize(Definition, fileInfo.Stream);
-                    FileName = fileInfo.FileName;
-                    IsDirty = false;
+                    await SaveToFile(fileInfo);
                 }
                 return true;
             }
@@ -100,17 +148,14 @@ namespace AstroAssistant.ViewModels
         /// </summary>
         public async Task<bool> SaveAs(String fileName)
         {
-            if (String.IsNullOrWhiteSpace(fileName)) return await SaveAs();
             if (IsBusy) return false;
+            if (String.IsNullOrWhiteSpace(fileName)) return await SaveAs();
             IsBusy = true;
             try
             {
-                using (var fileInfo = await _FileService.OpenSave(fileName))
+                using (var fileInfo = await _FileService.OpenSaveNatalChart(fileName))
                 {
-                    NatalChartSerializer ser = new NatalChartSerializer();
-                    await ser.Serialize(Definition, fileInfo.Stream);
-                    FileName = fileInfo.FileName;
-                    IsDirty = false;
+                    await SaveToFile(fileInfo);
                 }
                 return true;
             }
@@ -136,7 +181,7 @@ namespace AstroAssistant.ViewModels
         public bool IsBusy
         {
             get { return _IsBusy; }
-            set { SetProperty(ref _IsBusy, value, () => IsBusy); }
+            private set { SetProperty(ref _IsBusy, value, () => IsBusy); }
         }
         private bool _IsBusy;
 
@@ -156,7 +201,7 @@ namespace AstroAssistant.ViewModels
         public bool IsDirty
         {
             get { return _IsDirty; }
-            private set { SetProperty(ref _IsDirty, value, () => IsDirty); }
+            set { SetProperty(ref _IsDirty, value, () => IsDirty); }
         }
         private bool _IsDirty;
 

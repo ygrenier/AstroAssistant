@@ -58,11 +58,14 @@ namespace Astro
 
                     writer.WriteElementString("birth-place-name", definition.BirthPlaceName);
 
-                    writer.WriteStartElement("birth-place-position");
-                    writer.WriteElementString("longitude", definition.BirthPlacePosition.Longitude.ToString());
-                    writer.WriteElementString("latitude", definition.BirthPlacePosition.Latitude.ToString());
-                    writer.WriteElementString("altitude", definition.BirthPlacePosition.Altitude.ToString());
-                    writer.WriteEndElement();
+                    if (definition.BirthPlacePosition != null)
+                    {
+                        writer.WriteStartElement("birth-place-position");
+                        writer.WriteElementString("longitude", definition.BirthPlacePosition.Longitude.ToString());
+                        writer.WriteElementString("latitude", definition.BirthPlacePosition.Latitude.ToString());
+                        writer.WriteElementString("altitude", definition.BirthPlacePosition.Altitude.ToString());
+                        writer.WriteEndElement();
+                    }
 
                     writer.WriteElementString("position-center", definition.PositionCenter.ToString());
                     writer.WriteElementString("house-system", definition.HouseSystem.ToString());
