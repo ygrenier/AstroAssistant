@@ -1,4 +1,5 @@
 ﻿using Astro;
+using AstroAssistant.Services;
 using AstroAssistant.ViewModels;
 using Moq;
 using Moq.Protected;
@@ -16,89 +17,19 @@ namespace AstroAssistant.Core.Tests
         [Fact]
         public void TestCreate()
         {
-            //var provider = new Mock<IEphemerisProvider>();
-            var avm = new Mock<AppViewModel>();
+            var ass = new Mock<IAstroService>().Object;
+            var viewmodel = new AppViewModel(ass);
+            Assert.Same(ass, viewmodel.AstroService);
 
-            var viewmodel = avm.Object;
-            Assert.Null(viewmodel.AstroEngine);
+            Assert.Throws<ArgumentNullException>(() => new AppViewModel(null));
         }
 
         [Fact]
         public void TestInitialize()
         {
-            var mockProvider = new Mock<IEphemerisProvider>();
-            var provider = mockProvider.Object;
-
-            var mockViewmodel = new Mock<AppViewModel>();
-            mockViewmodel.Protected().Setup<IEphemerisProvider>("CreateEphemerisProvider").Returns(provider);
-
-            // Not initialized
-            var viewmodel = mockViewmodel.Object;
-            Assert.Null(viewmodel.AstroEngine);
-
-            // First initialization
+            var ass = new Mock<IAstroService>().Object;
+            var viewmodel = new AppViewModel(ass);
             viewmodel.Initialize();
-            Assert.NotNull(viewmodel.AstroEngine);
-            Assert.Same(provider, viewmodel.AstroEngine.EphemerisProvider);
-
-
-            // Second initialization change nothing
-            viewmodel.Initialize();
-            Assert.NotNull(viewmodel.AstroEngine);
-            Assert.Same(provider, viewmodel.AstroEngine.EphemerisProvider);
-
-        }
-
-        [Fact]
-        public void TestClose()
-        {
-            var mockProvider = new Mock<IEphemerisProvider>();
-            var provider = mockProvider.Object;
-
-            var mockViewmodel = new Mock<AppViewModel>();
-            mockViewmodel.Protected().Setup<IEphemerisProvider>("CreateEphemerisProvider").Returns(provider);
-
-            // Not initialized
-            var viewmodel = mockViewmodel.Object;
-            Assert.Null(viewmodel.AstroEngine);
-
-            // First initialization
-            viewmodel.Initialize();
-            Assert.NotNull(viewmodel.AstroEngine);
-            Assert.Same(provider, viewmodel.AstroEngine.EphemerisProvider);
-
-            // Close
-            viewmodel.Close();
-            Assert.Null(viewmodel.AstroEngine);
-            viewmodel.Close();
-            Assert.Null(viewmodel.AstroEngine);
-        }
-
-        [Fact]
-        public void TestDisposable()
-        {
-            var mockProvider = new Mock<IEphemerisProvider>();
-            var provider = mockProvider.Object;
-
-            var mockViewmodel = new Mock<AppViewModel>() {
-                CallBase = true
-            };
-            mockViewmodel.Protected().Setup<IEphemerisProvider>("CreateEphemerisProvider").Returns(provider);
-
-            AppViewModel viewmodel = null;
-            // Not initialized
-            using (viewmodel = mockViewmodel.Object)
-            {
-                Assert.Null(viewmodel.AstroEngine);
-
-                // First initialization
-                viewmodel.Initialize();
-                Assert.NotNull(viewmodel.AstroEngine);
-                Assert.Same(provider, viewmodel.AstroEngine.EphemerisProvider);
-            }
-            Assert.Null(viewmodel.AstroEngine);
-            viewmodel.Close();
-            Assert.Null(viewmodel.AstroEngine);
         }
 
     }

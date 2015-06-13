@@ -8,59 +8,26 @@ namespace AstroAssistant.ViewModels
     /// <summary>
     /// Base Application ViewModel
     /// </summary>
-    public abstract class AppViewModel : ViewModel, IDisposable
+    public class AppViewModel : ViewModel
     {
-
         /// <summary>
-        /// Internal release resources
+        /// Création d'un nouveau ViewModel
         /// </summary>
-        protected virtual void Dispose(bool disposing)
+        public AppViewModel(Services.IAstroService astroService)
         {
-            if (disposing)
-                Close();
+            if (astroService == null) throw new ArgumentNullException("astroService");
+            this.AstroService = astroService;
         }
 
         /// <summary>
-        /// Release resources
+        /// Initialisation
         /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-        }
+        public virtual void Initialize() { }
 
         /// <summary>
-        /// Ephemeris provider creator
+        /// Service Astro
         /// </summary>
-        protected abstract Astro.IEphemerisProvider CreateEphemerisProvider();
-
-        /// <summary>
-        /// Initialize the ViewModel
-        /// </summary>
-        public void Initialize()
-        {
-            // Check if it's already initialized
-            if (AstroEngine != null) return;
-            // Create the engine
-            AstroEngine = new Astro.AstroEngine(CreateEphemerisProvider());
-        }
-
-        /// <summary>
-        /// Close the viewmodel
-        /// </summary>
-        public void Close()
-        {
-            if (AstroEngine != null)
-            {
-                AstroEngine.Dispose();
-                AstroEngine = null;
-            }
-        }
-
-        /// <summary>
-        /// Current Astro Engine
-        /// </summary>
-        public Astro.AstroEngine AstroEngine { get; private set; }
-
+        public Services.IAstroService AstroService { get; private set; }
     }
 
 }

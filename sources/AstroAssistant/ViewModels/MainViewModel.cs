@@ -12,22 +12,15 @@ namespace AstroAssistant.ViewModels
     /// </summary>
     public class MainViewModel : AppViewModel
     {
-        /// <summary>
-        /// Création d'un nouveau fournisseur d'éphéméride
-        /// </summary>
-        protected override Astro.IEphemerisProvider CreateEphemerisProvider()
-        {
-            if (SwephEpheNetProvider == null)
-            {
-                SwephEpheNetProvider = new Astro.SwissEphNet.SwissEphNetProvider();
-            }
-            return SwephEpheNetProvider;
-        }
 
         /// <summary>
-        /// Fournisseur d'éphéméride Swiss Ephemeris
+        /// Nouveau ViewModel principal
         /// </summary>
-        public Astro.SwissEphNet.SwissEphNetProvider SwephEpheNetProvider { get; private set; }
+        public MainViewModel(Services.IAstroService astroService)
+            : base(astroService)
+        {
+        }
+
     }
 
 }
