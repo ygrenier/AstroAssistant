@@ -78,6 +78,8 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\StringEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="DesignTime\DtMainViewModel.cs" />
+    <Compile Include="DesignTime\DtNatalChartViewModel.cs" />
     <Compile Include="Resources\Locales.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,11 +87,15 @@
     </Compile>
     <Compile Include="Services\EphemerisService.cs" />
     <Compile Include="Services\TimeZoneProvider.cs" />
+    <Compile Include="ViewModels\IMainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RelayCommandGeneric.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\DateInputControl.xaml.cs">
       <DependentUpon>DateInputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NatalChartDefinitionView.xaml.cs">
+      <DependentUpon>NatalChartDefinitionView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DateInputControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NatalChartDefinitionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,7 +12,7 @@ namespace AstroAssistant.ViewModels
     /// <summary>
     /// ViewModel d'un thème astral
     /// </summary>
-    public class NatalChartViewModel : ViewModel
+    public class NatalChartViewModel : ViewModel, AstroAssistant.ViewModels.INatalChartViewModel
     {
         IFileService _FileService;
         ITimeZoneProvider _TimeZoneProvider;

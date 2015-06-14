@@ -62,6 +62,8 @@
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IResolverService.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\IAppViewModel.cs" />
+    <Compile Include="ViewModels\INatalChartViewModel.cs" />
     <Compile Include="ViewModels\NatalChartViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
   </ItemGroup>

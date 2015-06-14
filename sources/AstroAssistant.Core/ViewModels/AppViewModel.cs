@@ -10,7 +10,7 @@ namespace AstroAssistant.ViewModels
     /// <summary>
     /// Base Application ViewModel
     /// </summary>
-    public class AppViewModel : ViewModel
+    public class AppViewModel : ViewModel, AstroAssistant.ViewModels.IAppViewModel
     {
         /// <summary>
         /// Création d'un nouveau ViewModel
@@ -123,12 +123,12 @@ namespace AstroAssistant.ViewModels
         /// <summary>
         /// Thème en cours
         /// </summary>
-        public NatalChartViewModel CurrentNatalChart
+        public INatalChartViewModel CurrentNatalChart
         {
             get { return _CurrentNatalChart; }
             private set { SetProperty(ref _CurrentNatalChart, value, () => CurrentNatalChart); }
         }
-        private NatalChartViewModel _CurrentNatalChart;
+        private INatalChartViewModel _CurrentNatalChart;
 
     }
 

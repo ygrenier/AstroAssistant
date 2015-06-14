@@ -10,7 +10,7 @@ namespace AstroAssistant.ViewModels
     /// <summary>
     /// ViewModel principal
     /// </summary>
-    public class MainViewModel : AppViewModel
+    public class MainViewModel : AppViewModel, AstroAssistant.ViewModels.IMainViewModel
     {
 
         /// <summary>
