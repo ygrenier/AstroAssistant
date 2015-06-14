@@ -22,12 +22,36 @@ namespace AstroAssistant.ViewModels
             NewNatalChartCommand = new RelayCommand(async () => {
                 await NewNatalChart();
             });
+            LoadNatalChartCommand = new RelayCommand(async () => {
+                await LoadNatalChart();
+            });
+            SaveNatalChartCommand = new RelayCommand(async () => {
+                await SaveNatalChart();
+            });
+            SaveAsNatalChartCommand = new RelayCommand(async () => {
+                await SaveAsNatalChart();
+            });
         }
 
         /// <summary>
         /// Commande pour créer un nouveau thème astral
         /// </summary>
         public RelayCommand NewNatalChartCommand { get; private set; }
+
+        /// <summary>
+        /// Commande pour le chargement d'un thème astral
+        /// </summary>
+        public RelayCommand LoadNatalChartCommand { get; private set; }
+
+        /// <summary>
+        /// Commande pour l'enregistrement d'un thème astral
+        /// </summary>
+        public RelayCommand SaveNatalChartCommand { get; private set; }
+
+        /// <summary>
+        /// Commande pour l'enregistrement sous un autre nom d'un thème astral
+        /// </summary>
+        public RelayCommand SaveAsNatalChartCommand { get; private set; }
 
     }
 

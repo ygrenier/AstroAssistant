@@ -35,9 +35,9 @@ namespace AstroAssistant.ViewModels
         public virtual void Initialize() { }
 
         /// <summary>
-        /// Ouverture d'un nouveau thème astral vierge
+        /// Provoque un appel protégé avec sauvegarde si les modifications d'un thème n'ont pas été enregistré
         /// </summary>
-        public async Task<bool> NewNatalChart()
+        async Task<bool> CallProtectedWithDirtySaveIfRequired(Func<Task<bool>> call)
         {
             Exception error = null;
             try
@@ -47,8 +47,8 @@ namespace AstroAssistant.ViewModels
                 {
                     // On demande à l'utilisateur ce qu'il veut faire
                     var cr = await DialogService.Confirm(
-                        AstroAssistant.Resources.Locales.SaveChangesDialogTitle, 
-                        AstroAssistant.Resources.Locales.SaveChangesDialogMessage, 
+                        AstroAssistant.Resources.Locales.SaveChangesDialogTitle,
+                        AstroAssistant.Resources.Locales.SaveChangesDialogMessage,
                         DialogConfirmType.YesNoCancel);
                     if (cr == DialogConfirmResult.Cancel) return false;
                     if (cr == DialogConfirmResult.Yes)
@@ -59,9 +59,8 @@ namespace AstroAssistant.ViewModels
                         }
                     }
                 }
-                // On réinitialise le thème
-                CurrentNatalChart.Reset();
-                return true;
+                // On provoque l'appel
+                return await call();
             }
             catch (Exception ex)
             {
@@ -72,6 +71,43 @@ namespace AstroAssistant.ViewModels
                 await DialogService.ShowError(error);
             }
             return false;
+        }
+
+        /// <summary>
+        /// Ouverture d'un nouveau thème astral vierge
+        /// </summary>
+        public Task<bool> NewNatalChart()
+        {
+            return CallProtectedWithDirtySaveIfRequired(() => Task.Run(() => {
+                // On réinitialise le thème
+                CurrentNatalChart.Reset();
+                return true;
+            }));
+        }
+
+        /// <summary>
+        /// Chargement d'un thème astral
+        /// </summary>
+        /// <returns></returns>
+        public Task<bool> LoadNatalChart()
+        {
+            return CallProtectedWithDirtySaveIfRequired(() => Task.Run(() => CurrentNatalChart.LoadFromFile()));
+        }
+
+        /// <summary>
+        /// Enregistrement d'un thème astral
+        /// </summary>
+        public Task<bool> SaveNatalChart()
+        {
+            return CallProtectedWithDirtySaveIfRequired(() => Task.Run(() => CurrentNatalChart.Save()));
+        }
+
+        /// <summary>
+        /// Enregistrement d'un thème astral sous un autre nom
+        /// </summary>
+        public Task<bool> SaveAsNatalChart()
+        {
+            return CallProtectedWithDirtySaveIfRequired(() => Task.Run(() => CurrentNatalChart.SaveAs()));
         }
 
         /// <summary>

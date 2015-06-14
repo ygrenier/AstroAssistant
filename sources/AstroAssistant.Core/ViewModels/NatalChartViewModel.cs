@@ -138,6 +138,7 @@ namespace AstroAssistant.ViewModels
             {
                 using (var fileInfo = await _FileService.OpenSaveAsNatalChart())
                 {
+                    if (fileInfo == null) return false;
                     await SaveToFile(fileInfo);
                 }
                 return true;
@@ -160,6 +161,7 @@ namespace AstroAssistant.ViewModels
             {
                 using (var fileInfo = await _FileService.OpenSaveNatalChart(fileName))
                 {
+                    if (fileInfo == null) return false;
                     await SaveToFile(fileInfo);
                 }
                 return true;
