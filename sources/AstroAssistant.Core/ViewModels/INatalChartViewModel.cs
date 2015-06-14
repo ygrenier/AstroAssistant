@@ -4,7 +4,7 @@ namespace AstroAssistant.ViewModels
     public interface INatalChartViewModel
     {
         AstroAssistant.Services.IAstroService AstroService { get; }
-        Astro.NatalChartDefinition Definition { get; }
+        INatalChartDefinitionViewModel Definition { get; }
         string FileName { get; }
         bool IsBusy { get; }
         bool IsDirty { get; set; }

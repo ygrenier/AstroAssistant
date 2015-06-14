@@ -12,20 +12,13 @@ namespace AstroAssistant.DesignTime
     {
         public DtNatalChartViewModel()
         {
-            Definition = new Astro.NatalChartDefinition();
-            Definition.BirthDate.SetDate(DateTime.Now);
-            Definition.BirthPlaceName = "Besançon";
-            Definition.BirthPlacePosition = new Astro.GeoPosition(new Longitude(6, 1, 19, LongitudePolarity.East), new Latitude(47, 14, 35, LatitudePolarity.North), 400);
-            Definition.Gender = Gender.Male;
-            Definition.HouseSystem = HouseSystem.Placidus;
-            Definition.Name = "Test";
-            Definition.PositionCenter = PositionCenter.Topocentric;
+            Definition = new DtNatalChartDefinitionViewModel();
             NatalChart = new Astro.NatalChart();
         }
 
         public Services.IAstroService AstroService { get; set; }
 
-        public Astro.NatalChartDefinition Definition { get; set; }
+        public AstroAssistant.ViewModels.INatalChartDefinitionViewModel Definition { get; set; }
 
         public string FileName { get; set; }
 

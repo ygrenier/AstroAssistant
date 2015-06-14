@@ -26,7 +26,7 @@ namespace AstroAssistant.ViewModels
             IAstroService astroService
             )
         {
-            Definition = new NatalChartDefinition();
+            Definition = new NatalChartDefinitionViewModel();
             //DateUT = new DateUT(DateTime.Now);
             //Longitude = new SweNet.Longitude(5, 20, 0, LongitudePolarity.East);
             //Latitude = new SweNet.Latitude(47, 52, 0, LatitudePolarity.North);
@@ -50,8 +50,10 @@ namespace AstroAssistant.ViewModels
         /// </summary>
         public void Reset()
         {
-            Definition = new NatalChartDefinition();
+            Definition = new NatalChartDefinitionViewModel();
             NatalChart = null;
+            RaisePropertyChanged(() => Definition);
+            RaisePropertyChanged(() => NatalChart);
             FileName = null;
             IsDirty = false;
         }
@@ -59,7 +61,7 @@ namespace AstroAssistant.ViewModels
         async Task LoadFromFile(FileInformation fileInfos)
         {
             var ser = new NatalChartSerializer(_TimeZoneProvider);
-            Definition = await ser.Deserialize(fileInfos.Stream);
+            Definition.Initialize(await ser.Deserialize(fileInfos.Stream));
             NatalChart = new Astro.NatalChart();
             RaisePropertyChanged(() => Definition);
             RaisePropertyChanged(() => NatalChart);
@@ -114,7 +116,7 @@ namespace AstroAssistant.ViewModels
         async Task SaveToFile(FileInformation fileInfo)
         {
             NatalChartSerializer ser = new NatalChartSerializer(_TimeZoneProvider);
-            await ser.Serialize(Definition, fileInfo.Stream);
+            await ser.Serialize(Definition.Definition, fileInfo.Stream);
             FileName = fileInfo.FileName;
             IsDirty = false;
         }
@@ -175,7 +177,8 @@ namespace AstroAssistant.ViewModels
         /// <summary>
         /// Définition du thème
         /// </summary>
-        public NatalChartDefinition Definition { get; private set; }
+        public NatalChartDefinitionViewModel Definition { get; private set; }
+        INatalChartDefinitionViewModel INatalChartViewModel.Definition { get { return Definition; } }
 
         /// <summary>
         /// Thème calculé

@@ -87,7 +87,7 @@ namespace AstroAssistant.Core.Tests
             Assert.Null(vm.FileName);
             Assert.True(await vm.LoadFromFile());
             Assert.Equal("file.ext", vm.FileName);
-            Assert.Equal("Test", vm.Definition.Name);
+            Assert.Equal("Test", vm.Definition.Definition.Name);
             Assert.NotNull(vm.NatalChart);
             var chart = vm.NatalChart;
             Assert.True(await vm.LoadFromFile("other-file.ext"));

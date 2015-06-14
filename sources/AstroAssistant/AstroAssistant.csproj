@@ -76,9 +76,12 @@
     </ApplicationDefinition>
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\LatitudeToStringConverter.cs" />
+    <Compile Include="Converters\LongitudeToStringConverter.cs" />
     <Compile Include="Converters\StringEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="DesignTime\DtMainViewModel.cs" />
+    <Compile Include="DesignTime\DtNatalChartDefinitionViewModel.cs" />
     <Compile Include="DesignTime\DtNatalChartViewModel.cs" />
     <Compile Include="Resources\Locales.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -91,9 +94,6 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RelayCommandGeneric.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
-    <Compile Include="Views\DateInputControl.xaml.cs">
-      <DependentUpon>DateInputControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\NatalChartDefinitionView.xaml.cs">
       <DependentUpon>NatalChartDefinitionView.xaml</DependentUpon>
     </Compile>
@@ -114,10 +114,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Theme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DateInputControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

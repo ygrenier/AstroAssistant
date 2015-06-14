@@ -7,5 +7,7 @@
     <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
     <conv:StringEmptyToVisibilityConverter x:Key="StringEmptyToVisibilityConverter"/>
+    <conv:LongitudeToStringConverter x:Key="LongitudeToStringConverter"/>
+    <conv:LatitudeToStringConverter x:Key="LatitudeToStringConverter"/>
 
 </ResourceDictionary>

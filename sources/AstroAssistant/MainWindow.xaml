@@ -1,6 +1,4 @@
-﻿<Fluent:RibbonWindow 
-    xml:lang="fr"
-    x:Class="AstroAssistant.MainWindow"
+﻿<Fluent:RibbonWindow
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
@@ -9,8 +7,11 @@
     xmlns:dt="clr-namespace:AstroAssistant.DesignTime"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:Views="clr-namespace:AstroAssistant.Views" 
+    xml:lang="fr"
+    x:Class="AstroAssistant.MainWindow" 
     mc:Ignorable="d" 
-    d:DataContext="{d:DesignInstance Type=dt:DtMainViewModel, IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type dt:DtMainViewModel}}"
     lex:LocalizeDictionary.DesignCulture="fr"
     lex:ResxLocalizationProvider.DefaultAssembly="AstroAssistant"
     lex:ResxLocalizationProvider.DefaultDictionary="Locales"
@@ -37,6 +38,14 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
-        
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="200" Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Views:NatalChartDefinitionView DataContext="{Binding CurrentNatalChart.Definition}" />
+        </Grid>
+
     </DockPanel>
 </Fluent:RibbonWindow>
