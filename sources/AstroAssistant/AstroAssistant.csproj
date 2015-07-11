@@ -75,7 +75,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Controls\AstralChart.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\DoubleToDegreesFormatConverter.cs" />
     <Compile Include="Converters\LatitudeToStringConverter.cs" />
     <Compile Include="Converters\LongitudeToStringConverter.cs" />
     <Compile Include="Converters\StringEmptyToVisibilityConverter.cs" />
@@ -114,6 +116,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Themes\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -9,5 +9,6 @@
     <conv:StringEmptyToVisibilityConverter x:Key="StringEmptyToVisibilityConverter"/>
     <conv:LongitudeToStringConverter x:Key="LongitudeToStringConverter"/>
     <conv:LatitudeToStringConverter x:Key="LatitudeToStringConverter"/>
-
+    <conv:DoubleToDegreesFormatConverter x:Key="DoubleToDegreesFormatConverter"/>
+    
 </ResourceDictionary>

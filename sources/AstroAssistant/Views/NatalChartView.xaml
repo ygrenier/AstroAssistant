@@ -5,25 +5,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:astro="clr-namespace:Astro;assembly=Astro.Library"
+    xmlns:controls="clr-namespace:AstroAssistant.Controls"
     xmlns:dt="clr-namespace:AstroAssistant.DesignTime"
     mc:Ignorable="d" 
     d:DataContext="{d:DesignInstance Type=dt:DtNatalChart, IsDesignTimeCreatable=True}"
-    d:DesignHeight="359" d:DesignWidth="535">
+    d:DesignHeight="335" d:DesignWidth="545">
     <UserControl.Resources>
         <DataTemplate x:Key="PlanetValues" DataType="astro:PlanetValues">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{Binding PlanetName}"/>
-                <TextBlock Grid.Column="1" Text="{Binding Longitude}"/>
-                <TextBlock Grid.Column="2" Text="{Binding Latitude}"/>
-                <TextBlock Grid.Column="3" Text="{Binding Distance}"/>
-                <TextBlock Grid.Column="4" Text="{Binding HousePosition}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Longitude, Converter={StaticResource DoubleToDegreesFormatConverter}, ConverterParameter=Z1}" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Column="2" Text="{Binding Latitude, Converter={StaticResource DoubleToDegreesFormatConverter}}" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Column="3" Text="{Binding Distance, StringFormat=F9}" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Column="4" Text="{Binding HousePosition, StringFormat=F4}" HorizontalAlignment="Right"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="HouseValues" DataType="astro:HouseValues">
@@ -33,13 +34,17 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{Binding HouseName}"/>
-                <TextBlock Grid.Column="1" Text="{Binding Cusp}" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Column="1" Text="{Binding Cusp, Converter={StaticResource DoubleToDegreesFormatConverter}, ConverterParameter=Z2}" HorizontalAlignment="Right"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <TabControl>
-            <TabItem Header="Carte du ciel"/>
+            <TabItem Header="Carte du ciel">
+                <Grid>
+                    <controls:AstralChart NatalChart="{Binding}" />
+                </Grid>
+            </TabItem>
             <TabItem Header="Planètes &amp; Maisons">
                 <Grid>
                     <ScrollViewer>

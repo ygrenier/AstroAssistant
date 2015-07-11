@@ -34,7 +34,7 @@ namespace AstroAssistant.DesignTime
             for (int i = 0; i < 10; i++)
             {
                 this.AscMcs.Add(new HouseValues {
-                    Cusp = i * 1.7,
+                    Cusp = 12 + (i * 1.7),
                     House = i + 1,
                     HouseName = String.Format("Maison {0}", i + 1)
                 });
@@ -43,7 +43,7 @@ namespace AstroAssistant.DesignTime
             for (int i = 0; i < 10; i++)
             {
                 this.Houses.Add(new HouseValues {
-                    Cusp = i * 1.7,
+                    Cusp = 12 + (i * 1.7),
                     House = i + 1,
                     HouseName = String.Format("Maison {0}", i + 1)
                 });
@@ -52,15 +52,15 @@ namespace AstroAssistant.DesignTime
             for (int i = 0; i < 10; i++)
             {
                 this.Planets.Add(new PlanetValues {
-                    Planet=new Planet(i),
+                    Planet = new Planet(i),
                     PlanetName = String.Format("Planète {0}", i + 1),
-                    Distance=12.34,
-                    DistanceSpeed=0.5,
-                    Latitude=12,
-                    LatitudeSpeed=6,
-                    Longitude=23,
-                    LongitudeSpeed=7,
-                    HousePosition=23*i,
+                    Distance = 12.34,
+                    DistanceSpeed = 0.5,
+                    Latitude = 12,
+                    LatitudeSpeed = 6,
+                    Longitude = 7 + (27 * i),
+                    LongitudeSpeed = 7,
+                    HousePosition = 12 + (23 * i),
                     ErrorMessage = (i % 7 == 0) ? "Erreur lors du calcul" : null,
                     WarnMessage = (i % 8 == 0) ? "Alerte lors du calcul" : null
                 });

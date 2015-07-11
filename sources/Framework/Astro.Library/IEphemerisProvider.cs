@@ -61,7 +61,6 @@ namespace Astro
         /// Système de calcul des maisons
         /// </summary>
         HouseSystem HouseSystem { get; set; }
-
     }
 
 }
