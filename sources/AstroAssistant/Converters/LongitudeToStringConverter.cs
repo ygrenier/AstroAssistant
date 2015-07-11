@@ -24,8 +24,13 @@ namespace AstroAssistant.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null) return new Longitude();
-            return Longitude.Parse(value.ToString());
+            //if (value == null) return new Longitude();
+            //return Longitude.Parse(value.ToString());
+            if(value==null) return System.Windows.DependencyProperty.UnsetValue;
+            Longitude lon;
+            if (Longitude.TryParse(value.ToString(), out lon))
+                return lon;
+            return System.Windows.DependencyProperty.UnsetValue; ;
         }
     }
 }

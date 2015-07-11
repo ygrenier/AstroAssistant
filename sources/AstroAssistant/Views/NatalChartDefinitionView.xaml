@@ -111,7 +111,7 @@
                         <Label Grid.Row="1" Grid.Column="0" Content="Longitude" />
                         <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BirthPlaceLongitude, Converter={StaticResource LongitudeToStringConverter}}" />
                         <Label Grid.Row="2" Grid.Column="0" Content="Latitude" />
-                        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BirthPlaceLatitude, Converter={StaticResource LatitudeToStringConverter}}" />
+                        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BirthPlaceLatitude, Converter={StaticResource LatitudeToStringConverter}, ValidatesOnExceptions=True}" />
                         <Label Grid.Row="3" Grid.Column="0" Content="Altitude" />
                         <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BirthPlaceAltitude}" />
 
@@ -119,7 +119,7 @@
                     
                 </GroupBox>
 
-                <GroupBox Header="Options">
+                <GroupBox Header="Options de calcul">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
