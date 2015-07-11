@@ -128,9 +128,9 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Label Content="Position du centre" />
-                        <ComboBox Grid.Row="1" SelectedItem="{Binding PositionCenter}"/>
+                        <ComboBox Grid.Row="1" SelectedValue="{Binding PositionCenter}" ItemsSource="{Binding ListPositionCenters}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
                         <Label Grid.Row="2" Content="Système de maison" />
-                        <ComboBox Grid.Row="3" SelectedItem="{Binding HouseSystem}"/>
+                        <ComboBox Grid.Row="3" SelectedValue="{Binding HouseSystem}" ItemsSource="{Binding ListHouseSystems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
                     </Grid>
                 </GroupBox>
                 

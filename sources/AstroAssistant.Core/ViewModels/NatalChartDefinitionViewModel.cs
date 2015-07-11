@@ -40,6 +40,17 @@ namespace AstroAssistant.ViewModels
             ListTimeZoneInfos.Add(new KeyValuePair<TimeZoneInfo, string>(null, Locales.TimeZone_Custom_Caption));
             if (tzProvider != null)
                 ListTimeZoneInfos.AddRange(tzProvider.GetTimeZones().Select(tz => new KeyValuePair<TimeZoneInfo, String>(tz, tz.DisplayName)));
+
+            // Liste des systèmes de maisons
+            ListHouseSystems = new List<KeyValuePair<HouseSystem, string>>();
+            foreach (HouseSystem hs in Enum.GetValues(typeof(HouseSystem)))
+                ListHouseSystems.Add(new KeyValuePair<HouseSystem, string>(hs, hs.GetCaptionString()));
+
+            // Liste des positions
+            ListPositionCenters = new List<KeyValuePair<PositionCenter, string>>();
+            foreach (PositionCenter pc in Enum.GetValues(typeof(PositionCenter)))
+                ListPositionCenters.Add(new KeyValuePair<PositionCenter, string>(pc, pc.GetCaptionString()));
+
         }
 
         /// <summary>
@@ -401,6 +412,11 @@ namespace AstroAssistant.ViewModels
         }
 
         /// <summary>
+        /// Liste des positions
+        /// </summary>
+        public List<KeyValuePair<Astro.PositionCenter, String>> ListPositionCenters { get; private set; }
+
+        /// <summary>
         /// Calcul des maisons
         /// </summary>
         public HouseSystem HouseSystem
@@ -415,6 +431,11 @@ namespace AstroAssistant.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// Liste des systèmes de calcul des maisons
+        /// </summary>
+        public List<KeyValuePair<Astro.HouseSystem, String>> ListHouseSystems { get; private set; }
 
         ///// <summary>
         ///// Liste des planètes

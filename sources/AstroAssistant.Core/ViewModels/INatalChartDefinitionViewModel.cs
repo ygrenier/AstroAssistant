@@ -26,7 +26,9 @@ namespace AstroAssistant.ViewModels
         Astro.Gender Gender { get; set; }
         List<KeyValuePair<Astro.Gender, String>> ListGenders { get; }
         Astro.HouseSystem HouseSystem { get; set; }
+        List<KeyValuePair<Astro.HouseSystem, String>> ListHouseSystems { get; }
         string Name { get; set; }
         Astro.PositionCenter PositionCenter { get; set; }
+        List<KeyValuePair<Astro.PositionCenter, String>> ListPositionCenters { get; }
     }
 }

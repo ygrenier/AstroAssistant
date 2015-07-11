@@ -44,6 +44,14 @@ namespace AstroAssistant.DesignTime
 
             ListTimeZoneInfos = new List<KeyValuePair<TimeZoneInfo, String>>();
             ListTimeZoneInfos.AddRange(TimeZoneInfo.GetSystemTimeZones().Select(tz => new KeyValuePair<TimeZoneInfo, String>(tz, tz.DisplayName)));
+
+            ListHouseSystems = new List<KeyValuePair<HouseSystem, string>>();
+            ListHouseSystems.Add(new KeyValuePair<HouseSystem, string>(HouseSystem.Placidus, "Placidus"));
+            ListHouseSystems.Add(new KeyValuePair<HouseSystem, string>(HouseSystem.Koch, "Koch"));
+
+            ListPositionCenters = new List<KeyValuePair<PositionCenter, string>>();
+            ListPositionCenters.Add(new KeyValuePair<PositionCenter, string>(PositionCenter.Geocentric, "Géocentrique"));
+            ListPositionCenters.Add(new KeyValuePair<PositionCenter, string>(PositionCenter.Topocentric, "Toposcentrique"));
         }
 
         public int BirthDateDay { get; set; }
@@ -93,6 +101,8 @@ namespace AstroAssistant.DesignTime
 
         public List<KeyValuePair<Gender, string>> ListGenders { get; set; }
         public List<KeyValuePair<Astro.DayLightDefinition, String>> ListDayLightDefinitions { get; set; }
+        public List<KeyValuePair<Astro.PositionCenter, String>> ListPositionCenters { get; set; }
+        public List<KeyValuePair<Astro.HouseSystem, String>> ListHouseSystems { get; set; }
     }
 #endif
 }
