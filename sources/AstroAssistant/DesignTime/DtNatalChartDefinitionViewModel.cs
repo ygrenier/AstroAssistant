@@ -21,7 +21,7 @@ namespace AstroAssistant.DesignTime
             this.BirthDateMinute = dt.Minute;
             this.BirthDateSecond = dt.Second;
             this.BirthDateMilliSecond = dt.Millisecond;
-            this.BirthDateDayLight = DayLightDefinition.FromDotNet;
+            this.BirthDateDayLight = DayLightDefinition.FromTimeZone;
             this.BirthDateTimeZone = TimeZoneInfo.Local;
 
             this.BirthPlaceName = "Besançon";
@@ -34,6 +34,11 @@ namespace AstroAssistant.DesignTime
             ListGenders = new List<KeyValuePair<Gender, string>>();
             ListGenders.Add(new KeyValuePair<Gender, string>(Gender.Female, "Femme"));
             ListGenders.Add(new KeyValuePair<Gender, string>(Gender.Male, "Homme"));
+
+            ListDayLightDefinitions = new List<KeyValuePair<DayLightDefinition, string>>();
+            ListDayLightDefinitions.Add(new KeyValuePair<DayLightDefinition, string>(DayLightDefinition.FromTimeZone, "Calculé avec le fuseau horaire"));
+            ListDayLightDefinitions.Add(new KeyValuePair<DayLightDefinition, string>(DayLightDefinition.On, "Actif"));
+            ListDayLightDefinitions.Add(new KeyValuePair<DayLightDefinition, string>(DayLightDefinition.Off, "Inactif"));
 
             ListTimeZoneInfos = new List<TimeZoneInfo>();
             ListTimeZoneInfos.AddRange(TimeZoneInfo.GetSystemTimeZones());
@@ -61,6 +66,8 @@ namespace AstroAssistant.DesignTime
 
         public int BirthDateYear { get; set; }
 
+        public double BirthDayLightOffset { get; set; }
+
         public string BirthPlaceName { get; set; }
 
         public Astro.GeoPosition BirthPlacePosition { get; set; }
@@ -81,6 +88,7 @@ namespace AstroAssistant.DesignTime
 
 
         public List<KeyValuePair<Gender, string>> ListGenders { get; set; }
+        public List<KeyValuePair<Astro.DayLightDefinition, String>> ListDayLightDefinitions { get; set; }
     }
 #endif
 }

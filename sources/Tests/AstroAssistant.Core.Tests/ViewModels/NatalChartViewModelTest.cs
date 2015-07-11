@@ -42,6 +42,19 @@ namespace AstroAssistant.Core.Tests
         }
 
         [Fact]
+        public void TestAsINatalChartViewModel()
+        {
+            var fs = new Mock<IFileService>().Object;
+            var ass = new Mock<IAstroService>().Object;
+            INatalChartViewModel vm = new NatalChartViewModel(fs, null, ass);
+            Assert.Null(vm.FileName);
+            Assert.NotNull(vm.Definition);
+            Assert.Null(vm.NatalChart);
+            Assert.False(vm.IsDirty);
+            Assert.False(vm.IsBusy);
+        }
+
+        [Fact]
         public async Task TestReset()
         {
             var fsMock = new Mock<IFileService>();

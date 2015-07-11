@@ -143,4 +143,13 @@ n() =&gt; PropertyName</value>
   <data name="Gender_Male_Caption" xml:space="preserve">
     <value>Homme</value>
   </data>
+  <data name="DayLight_FromTimeZone_Caption" xml:space="preserve">
+    <value>Calculé avec le fuseau horaire</value>
+  </data>
+  <data name="DayLight_Off_Caption" xml:space="preserve">
+    <value>Inactif</value>
+  </data>
+  <data name="DayLight_On_Caption" xml:space="preserve">
+    <value>Actif</value>
+  </data>
 </root>

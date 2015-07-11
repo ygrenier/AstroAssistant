@@ -80,6 +80,33 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Calculé avec le fuseau horaire.
+        /// </summary>
+        internal static string DayLight_FromTimeZone_Caption {
+            get {
+                return ResourceManager.GetString("DayLight_FromTimeZone_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inactif.
+        /// </summary>
+        internal static string DayLight_Off_Caption {
+            get {
+                return ResourceManager.GetString("DayLight_Off_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Actif.
+        /// </summary>
+        internal static string DayLight_On_Caption {
+            get {
+                return ResourceManager.GetString("DayLight_On_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Femme.
         /// </summary>
         internal static string Gender_Female_Caption {

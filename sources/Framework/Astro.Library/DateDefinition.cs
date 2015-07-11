@@ -98,15 +98,15 @@ namespace Astro
         }
 
         /// <summary>
-        /// Calcul l'offset complet
+        /// Calcul l'offset de l'heure d'été
         /// </summary>
-        public TimeSpan GetDateOffset()
+        /// <returns></returns>
+        public TimeSpan GetDayLightOffset()
         {
-            var baseOffset = TimeZone != null ? TimeZone.BaseUtcOffset : UtcOffset;
             TimeSpan daylightOffset = TimeSpan.Zero;
             switch (DayLight)
             {
-                case DayLightDefinition.FromDotNet:
+                case DayLightDefinition.FromTimeZone:
                     try
                     {
                         if (Year > 0 && TimeZone != null && TimeZone.SupportsDaylightSavingTime && TimeZone.IsDaylightSavingTime(new DateTime(Year, Month, Day, Hour, Minute, Second, MilliSecond)))
@@ -121,7 +121,16 @@ namespace Astro
                 default:
                     break;
             }
-            return baseOffset + daylightOffset;
+            return daylightOffset;
+        }
+
+        /// <summary>
+        /// Calcul l'offset complet
+        /// </summary>
+        public TimeSpan GetDateOffset()
+        {
+            var baseOffset = TimeZone != null ? TimeZone.BaseUtcOffset : UtcOffset;
+            return baseOffset + GetDayLightOffset();
         }
 
         /// <summary>
@@ -191,7 +200,7 @@ namespace Astro
         /// <summary>
         /// Calculé depuis les informations du Framework .Net
         /// </summary>
-        FromDotNet,
+        FromTimeZone,
         /// <summary>
         /// Heure d'hiver
         /// </summary>

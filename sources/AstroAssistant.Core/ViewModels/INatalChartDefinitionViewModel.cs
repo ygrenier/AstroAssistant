@@ -6,6 +6,7 @@ namespace AstroAssistant.ViewModels
     {
         int BirthDateDay { get; set; }
         Astro.DayLightDefinition BirthDateDayLight { get; set; }
+        List<KeyValuePair<Astro.DayLightDefinition, String>> ListDayLightDefinitions { get; }
         int BirthDateHour { get; set; }
         int BirthDateMilliSecond { get; set; }
         int BirthDateMinute { get; set; }
@@ -14,6 +15,7 @@ namespace AstroAssistant.ViewModels
         TimeZoneInfo BirthDateTimeZone { get; set; }
         List<TimeZoneInfo> ListTimeZoneInfos { get; }
         double BirthDateUtcOffset { get; set; }
+        double BirthDayLightOffset { get; }
         int BirthDateYear { get; set; }
         string BirthPlaceName { get; set; }
         Astro.GeoPosition BirthPlacePosition { get; set; }

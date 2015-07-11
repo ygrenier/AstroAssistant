@@ -135,4 +135,19 @@
   <data name="WrongUnaryExpressionMessage" xml:space="preserve">
     <value>Unary-expression invalid. Must be called with an expression of type n() =&gt; PropertyName!</value>
   </data>
+  <data name="DayLight_FromTimeZone_Caption" xml:space="preserve">
+    <value>Calculated with the timezone!</value>
+  </data>
+  <data name="DayLight_Off_Caption" xml:space="preserve">
+    <value>Not Active</value>
+  </data>
+  <data name="DayLight_On_Caption" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Gender_Female_Caption" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Gender_Male_Caption" xml:space="preserve">
+    <value>Male</value>
+  </data>
 </root>
