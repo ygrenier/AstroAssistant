@@ -26,7 +26,6 @@ namespace AstroAssistant.ViewModels
             IAstroService astroService
             )
         {
-            Definition = new NatalChartDefinitionViewModel();
             //DateUT = new DateUT(DateTime.Now);
             //Longitude = new SweNet.Longitude(5, 20, 0, LongitudePolarity.East);
             //Latitude = new SweNet.Latitude(47, 52, 0, LatitudePolarity.North);
@@ -43,6 +42,7 @@ namespace AstroAssistant.ViewModels
             _TimeZoneProvider = tzProvider;
             FileName = null;
             IsDirty = false;
+            Definition = new NatalChartDefinitionViewModel(_TimeZoneProvider);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace AstroAssistant.ViewModels
         /// </summary>
         public void Reset()
         {
-            Definition = new NatalChartDefinitionViewModel();
+            Definition = new NatalChartDefinitionViewModel(_TimeZoneProvider);
             NatalChart = null;
             RaisePropertyChanged(() => Definition);
             RaisePropertyChanged(() => NatalChart);

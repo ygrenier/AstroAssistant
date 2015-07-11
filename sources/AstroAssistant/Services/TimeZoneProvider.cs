@@ -23,6 +23,15 @@ namespace AstroAssistant.Services
                 ?? TimeZoneInfo.GetSystemTimeZones().FirstOrDefault(tz => tz.StandardName.ToLower().Contains(name.ToLower()) || tz.DisplayName.ToLower().Contains(name.ToLower()))
                 ;
         }
+
+        /// <summary>
+        /// Enumération des fuseaux horaire
+        /// </summary>
+        public IEnumerable<TimeZoneInfo> GetTimeZones()
+        {
+            return TimeZoneInfo.GetSystemTimeZones();
+        }
+
     }
 
 }

@@ -137,4 +137,10 @@ n() =&gt; PropertyName</value>
   <data name="SaveChangesDialogTitle" xml:space="preserve">
     <value>Enregistrer les modifications</value>
   </data>
+  <data name="Gender_Female_Caption" xml:space="preserve">
+    <value>Femme</value>
+  </data>
+  <data name="Gender_Male_Caption" xml:space="preserve">
+    <value>Homme</value>
+  </data>
 </root>

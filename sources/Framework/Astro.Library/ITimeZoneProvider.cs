@@ -14,5 +14,10 @@ namespace Astro
         /// Recherche un fuseau horaire
         /// </summary>
         TimeZoneInfo FindTimeZone(string name);
+
+        /// <summary>
+        /// Retourne la liste des fuseaux horaires disponibles
+        /// </summary>
+        IEnumerable<TimeZoneInfo> GetTimeZones();
     }
 }

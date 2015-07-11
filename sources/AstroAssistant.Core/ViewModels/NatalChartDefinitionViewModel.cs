@@ -1,4 +1,5 @@
 ﻿using Astro;
+using AstroAssistant.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,19 @@ namespace AstroAssistant.ViewModels
         /// <summary>
         /// Création du viewmodel
         /// </summary>
-        public NatalChartDefinitionViewModel()
+        public NatalChartDefinitionViewModel(ITimeZoneProvider tzProvider)
         {
             Definition = new NatalChartDefinition();
             Definition.BirthPlacePosition = new GeoPosition();
+
+            // Liste des genres
+            ListGenders = new List<KeyValuePair<Gender, string>>();
+            ListGenders.Add(new KeyValuePair<Gender, string>(Gender.Female, Locales.Gender_Female_Caption));
+            ListGenders.Add(new KeyValuePair<Gender, string>(Gender.Male, Locales.Gender_Male_Caption));
+
+            // Liste des fuseaux horaire
+            ListTimeZoneInfos = new List<TimeZoneInfo>();
+            ListTimeZoneInfos.AddRange(tzProvider.GetTimeZones());
         }
 
         /// <summary>
@@ -28,7 +38,7 @@ namespace AstroAssistant.ViewModels
         public void Initialize(NatalChartDefinition definition)
         {
             Definition = definition ?? new NatalChartDefinition();
-            RaisePropertyChanged(() => Definition);
+            RaisePropertyChanged("");
         }
 
         /// <summary>
@@ -67,6 +77,11 @@ namespace AstroAssistant.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// Liste des genres
+        /// </summary>
+        public List<KeyValuePair<Gender,String>> ListGenders { get; private set; }
 
         /// <summary>
         /// Année
@@ -195,6 +210,11 @@ namespace AstroAssistant.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// Liste des fuseaux horaire
+        /// </summary>
+        public List<TimeZoneInfo> ListTimeZoneInfos { get; private set; }
 
         /// <summary>
         /// Décalage horaire

@@ -24,6 +24,21 @@
                     </Style>
                 </StackPanel.Resources>
 
+                <GroupBox Header="Thème">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Nom" />
+                        <TextBox Grid.Row="1" Text="{Binding Name}" />
+                        <Label Grid.Row="2" Content="Genre" />
+                        <ComboBox Grid.Row="3" SelectedValue="{Binding Gender}" ItemsSource="{Binding ListGenders}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                    </Grid>
+                </GroupBox>
+                
                 <GroupBox Header="Date de naissance">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -59,7 +74,7 @@
                         <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding BirthDateSecond}"/>
 
                         <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Content="Fuseau Horaire"/>
-                        <ComboBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" SelectedItem="{Binding BirthDateTimeZone}" />
+                        <ComboBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" SelectedItem="{Binding BirthDateTimeZone}" ItemsSource="{Binding ListTimeZoneInfos}" />
 
                         <Label Grid.Column="0" Grid.Row="6" Content="Décalage"/>
                         <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding BirthDateUtcOffset}" VerticalAlignment="Center" TextAlignment="Right" />
@@ -95,6 +110,21 @@
                     
                 </GroupBox>
 
+                <GroupBox Header="Options">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Position du centre" />
+                        <ComboBox Grid.Row="1" SelectedItem="{Binding PositionCenter}"/>
+                        <Label Grid.Row="2" Content="Système de maison" />
+                        <ComboBox Grid.Row="3" SelectedItem="{Binding HouseSystem}"/>
+                    </Grid>
+                </GroupBox>
+                
             </StackPanel>
         </ScrollViewer>
         

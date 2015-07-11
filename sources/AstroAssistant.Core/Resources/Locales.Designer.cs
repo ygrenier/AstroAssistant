@@ -80,6 +80,24 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Femme.
+        /// </summary>
+        internal static string Gender_Female_Caption {
+            get {
+                return ResourceManager.GetString("Gender_Female_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Homme.
+        /// </summary>
+        internal static string Gender_Male_Caption {
+            get {
+                return ResourceManager.GetString("Gender_Male_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Voulez-vous enregistrer les modifications ?.
         /// </summary>
         internal static string SaveChangesDialogMessage {

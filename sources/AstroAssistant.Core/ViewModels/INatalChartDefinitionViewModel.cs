@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace AstroAssistant.ViewModels
 {
     public interface INatalChartDefinitionViewModel
@@ -11,6 +12,7 @@ namespace AstroAssistant.ViewModels
         int BirthDateMonth { get; set; }
         int BirthDateSecond { get; set; }
         TimeZoneInfo BirthDateTimeZone { get; set; }
+        List<TimeZoneInfo> ListTimeZoneInfos { get; }
         double BirthDateUtcOffset { get; set; }
         int BirthDateYear { get; set; }
         string BirthPlaceName { get; set; }
@@ -19,6 +21,7 @@ namespace AstroAssistant.ViewModels
         Astro.Latitude BirthPlaceLatitude { get; set; }
         double BirthPlaceAltitude { get; set; }
         Astro.Gender Gender { get; set; }
+        List<KeyValuePair<Astro.Gender, String>> ListGenders { get; }
         Astro.HouseSystem HouseSystem { get; set; }
         string Name { get; set; }
         Astro.PositionCenter PositionCenter { get; set; }

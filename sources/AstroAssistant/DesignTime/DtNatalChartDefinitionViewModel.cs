@@ -30,6 +30,13 @@ namespace AstroAssistant.DesignTime
             this.HouseSystem = HouseSystem.Placidus;
             this.Name = "Test";
             this.PositionCenter = PositionCenter.Topocentric;
+
+            ListGenders = new List<KeyValuePair<Gender, string>>();
+            ListGenders.Add(new KeyValuePair<Gender, string>(Gender.Female, "Femme"));
+            ListGenders.Add(new KeyValuePair<Gender, string>(Gender.Male, "Homme"));
+
+            ListTimeZoneInfos = new List<TimeZoneInfo>();
+            ListTimeZoneInfos.AddRange(TimeZoneInfo.GetSystemTimeZones());
         }
 
         public int BirthDateDay { get; set; }
@@ -47,6 +54,8 @@ namespace AstroAssistant.DesignTime
         public int BirthDateSecond { get; set; }
 
         public TimeZoneInfo BirthDateTimeZone { get; set; }
+
+        public List<TimeZoneInfo> ListTimeZoneInfos { get; set; }
 
         public double BirthDateUtcOffset { get; set; }
 
@@ -70,6 +79,8 @@ namespace AstroAssistant.DesignTime
 
         public double BirthPlaceAltitude { get; set; }
 
+
+        public List<KeyValuePair<Gender, string>> ListGenders { get; set; }
     }
 #endif
 }
