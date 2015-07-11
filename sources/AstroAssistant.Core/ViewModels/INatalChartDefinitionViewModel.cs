@@ -13,10 +13,11 @@ namespace AstroAssistant.ViewModels
         int BirthDateMonth { get; set; }
         int BirthDateSecond { get; set; }
         TimeZoneInfo BirthDateTimeZone { get; set; }
-        List<TimeZoneInfo> ListTimeZoneInfos { get; }
+        List<KeyValuePair<TimeZoneInfo, String>> ListTimeZoneInfos { get; }
         double BirthDateUtcOffset { get; set; }
         double BirthDayLightOffset { get; }
         int BirthDateYear { get; set; }
+        DateTimeOffset BirthDateUTC { get; }
         string BirthPlaceName { get; set; }
         Astro.GeoPosition BirthPlacePosition { get; set; }
         Astro.Longitude BirthPlaceLongitude { get; set; }

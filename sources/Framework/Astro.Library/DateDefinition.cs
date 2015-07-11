@@ -138,7 +138,11 @@ namespace Astro
         /// </summary>
         public DateTimeOffset ToDateTimeOffset()
         {
-            return new DateTimeOffset(Year, Month, Day, Hour, Minute, Second, MilliSecond, GetDateOffset());
+            try
+            {
+                return new DateTimeOffset(Year, Month, Day, Hour, Minute, Second, MilliSecond, GetDateOffset());
+            }
+            catch { return DateTimeOffset.MinValue; }
         }
 
         /// <summary>

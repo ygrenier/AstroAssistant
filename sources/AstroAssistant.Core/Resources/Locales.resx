@@ -152,4 +152,7 @@ n() =&gt; PropertyName</value>
   <data name="DayLight_On_Caption" xml:space="preserve">
     <value>Actif</value>
   </data>
+  <data name="TimeZone_Custom_Caption" xml:space="preserve">
+    <value>Fuseau horaire personnalisé</value>
+  </data>
 </root>

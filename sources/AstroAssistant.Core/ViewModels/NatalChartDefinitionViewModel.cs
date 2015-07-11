@@ -21,6 +21,8 @@ namespace AstroAssistant.ViewModels
         {
             Definition = new NatalChartDefinition();
             Definition.BirthPlacePosition = new GeoPosition();
+            Definition.BirthDate.SetDate(DateTimeOffset.Now);
+            this.BirthDateTimeZone = TimeZoneInfo.Local;
 
             // Liste des genres
             ListGenders = new List<KeyValuePair<Gender, string>>();
@@ -34,9 +36,10 @@ namespace AstroAssistant.ViewModels
             ListDayLightDefinitions.Add(new KeyValuePair<DayLightDefinition, string>(DayLightDefinition.Off, Locales.DayLight_Off_Caption));
 
             // Liste des fuseaux horaire
-            ListTimeZoneInfos = new List<TimeZoneInfo>();
+            ListTimeZoneInfos = new List<KeyValuePair<TimeZoneInfo, String>>();
+            ListTimeZoneInfos.Add(new KeyValuePair<TimeZoneInfo, string>(null, Locales.TimeZone_Custom_Caption));
             if (tzProvider != null)
-                ListTimeZoneInfos.AddRange(tzProvider.GetTimeZones());
+                ListTimeZoneInfos.AddRange(tzProvider.GetTimeZones().Select(tz => new KeyValuePair<TimeZoneInfo, String>(tz, tz.DisplayName)));
         }
 
         /// <summary>
@@ -90,6 +93,12 @@ namespace AstroAssistant.ViewModels
         /// </summary>
         public List<KeyValuePair<Gender,String>> ListGenders { get; private set; }
 
+        void RaiseDateProperties()
+        {
+            RaisePropertyChanged(() => BirthDayLightOffset);
+            RaisePropertyChanged(() => BirthDateUTC);
+        }
+
         /// <summary>
         /// Année
         /// </summary>
@@ -102,7 +111,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.Year = value;
                     RaisePropertyChanged(() => BirthDateYear);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -119,7 +128,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.Month = value;
                     RaisePropertyChanged(() => BirthDateMonth);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -136,7 +145,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.Day = value;
                     RaisePropertyChanged(() => BirthDateDay);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -153,7 +162,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.Hour = value;
                     RaisePropertyChanged(() => BirthDateHour);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -170,7 +179,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.Minute = value;
                     RaisePropertyChanged(() => BirthDateMinute);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -187,7 +196,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.Second = value;
                     RaisePropertyChanged(() => BirthDateSecond);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -204,7 +213,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.MilliSecond = value;
                     RaisePropertyChanged(() => BirthDateMilliSecond);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -221,7 +230,8 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.TimeZone = value;
                     RaisePropertyChanged(() => BirthDateTimeZone);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaisePropertyChanged(() => BirthDateUtcOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -229,14 +239,14 @@ namespace AstroAssistant.ViewModels
         /// <summary>
         /// Liste des fuseaux horaire
         /// </summary>
-        public List<TimeZoneInfo> ListTimeZoneInfos { get; private set; }
+        public List<KeyValuePair<TimeZoneInfo, String>> ListTimeZoneInfos { get; private set; }
 
         /// <summary>
         /// Décalage horaire
         /// </summary>
         public Double BirthDateUtcOffset
         {
-            get { return Definition.BirthDate.UtcOffset.TotalHours; }
+            get { return Definition.BirthDate.GetDateOffset().TotalHours; }
             set
             {
                 TimeSpan ts = TimeSpan.FromHours(value);
@@ -244,7 +254,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.UtcOffset = ts;
                     RaisePropertyChanged(() => BirthDateUtcOffset);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -261,7 +271,7 @@ namespace AstroAssistant.ViewModels
                 {
                     Definition.BirthDate.DayLight = value;
                     RaisePropertyChanged(() => BirthDateDayLight);
-                    RaisePropertyChanged(() => BirthDayLightOffset);
+                    RaiseDateProperties();
                 }
             }
         }
@@ -275,6 +285,11 @@ namespace AstroAssistant.ViewModels
         /// Liste des mode de gestion des heures d'été
         /// </summary>
         public List<KeyValuePair<Astro.DayLightDefinition, String>> ListDayLightDefinitions { get; private set; }
+
+        /// <summary>
+        /// Date UTC
+        /// </summary>
+        public DateTimeOffset BirthDateUTC { get { return Definition.BirthDate.ToDateTimeOffset().ToUniversalTime(); } }
 
         /// <summary>
         /// Nom du lieu de naissance

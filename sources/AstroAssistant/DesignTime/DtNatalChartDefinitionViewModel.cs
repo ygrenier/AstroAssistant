@@ -24,6 +24,8 @@ namespace AstroAssistant.DesignTime
             this.BirthDateDayLight = DayLightDefinition.FromTimeZone;
             this.BirthDateTimeZone = TimeZoneInfo.Local;
 
+            this.BirthDateUTC = dt.ToUniversalTime();
+
             this.BirthPlaceName = "Besançon";
             this.BirthPlacePosition = new Astro.GeoPosition(new Longitude(6, 1, 19, LongitudePolarity.East), new Latitude(47, 14, 35, LatitudePolarity.North), 400);
             this.Gender = Gender.Male;
@@ -40,8 +42,8 @@ namespace AstroAssistant.DesignTime
             ListDayLightDefinitions.Add(new KeyValuePair<DayLightDefinition, string>(DayLightDefinition.On, "Actif"));
             ListDayLightDefinitions.Add(new KeyValuePair<DayLightDefinition, string>(DayLightDefinition.Off, "Inactif"));
 
-            ListTimeZoneInfos = new List<TimeZoneInfo>();
-            ListTimeZoneInfos.AddRange(TimeZoneInfo.GetSystemTimeZones());
+            ListTimeZoneInfos = new List<KeyValuePair<TimeZoneInfo, String>>();
+            ListTimeZoneInfos.AddRange(TimeZoneInfo.GetSystemTimeZones().Select(tz => new KeyValuePair<TimeZoneInfo, String>(tz, tz.DisplayName)));
         }
 
         public int BirthDateDay { get; set; }
@@ -60,13 +62,15 @@ namespace AstroAssistant.DesignTime
 
         public TimeZoneInfo BirthDateTimeZone { get; set; }
 
-        public List<TimeZoneInfo> ListTimeZoneInfos { get; set; }
+        public List<KeyValuePair<TimeZoneInfo, String>> ListTimeZoneInfos { get; set; }
 
         public double BirthDateUtcOffset { get; set; }
 
         public int BirthDateYear { get; set; }
 
         public double BirthDayLightOffset { get; set; }
+
+        public DateTimeOffset BirthDateUTC { get; set; }
 
         public string BirthPlaceName { get; set; }
 

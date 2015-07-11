@@ -143,6 +143,15 @@ namespace AstroAssistant.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fuseau horaire personnalisé.
+        /// </summary>
+        internal static string TimeZone_Custom_Caption {
+            get {
+                return ResourceManager.GetString("TimeZone_Custom_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Expression invalide. Doit être appelé avec une expression de type
         ///n() =&gt; PropertyName.
         /// </summary>
