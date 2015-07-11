@@ -62,7 +62,8 @@ namespace AstroAssistant.ViewModels
         {
             var ser = new NatalChartSerializer(_TimeZoneProvider);
             Definition.Initialize(await ser.Deserialize(fileInfos.Stream));
-            NatalChart = new Astro.NatalChart();
+            //NatalChart = new Astro.NatalChart();
+            NatalChart = null;
             RaisePropertyChanged(() => Definition);
             RaisePropertyChanged(() => NatalChart);
             FileName = fileInfos.FileName;
@@ -172,6 +173,27 @@ namespace AstroAssistant.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        /// <summary>
+        /// Recalcul le thème
+        /// </summary>
+        public Task<bool> Calculate()
+        {
+            return Task.Run<bool>(() => {
+                if (IsBusy) return false;
+                IsBusy = true;
+                try
+                {
+                    NatalChart = AstroService.AstroEngine.CalculateNatalChart(Definition.Definition);
+                    RaisePropertyChanged(() => NatalChart);
+                    return true;
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            });
         }
 
         /// <summary>

@@ -35,6 +35,28 @@ namespace AstroAssistant.ViewModels
         public virtual void Initialize() { }
 
         /// <summary>
+        /// Provoque un appel protégé
+        /// </summary>
+        async Task<bool> CallProtected(Func<Task<bool>> call)
+        {
+            Exception error = null;
+            try
+            {
+                // On provoque l'appel
+                return await call();
+            }
+            catch (Exception ex)
+            {
+                error = ex;
+            }
+            if (error != null)
+            {
+                await DialogService.ShowError(error);
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Provoque un appel protégé avec sauvegarde si les modifications d'un thème n'ont pas été enregistré
         /// </summary>
         async Task<bool> CallProtectedWithDirtySaveIfRequired(Func<Task<bool>> call)
@@ -108,6 +130,15 @@ namespace AstroAssistant.ViewModels
         public Task<bool> SaveAsNatalChart()
         {
             return CallProtectedWithDirtySaveIfRequired(() => Task.Run(() => CurrentNatalChart.SaveAs()));
+        }
+
+        /// <summary>
+        /// Provoque le calcul du thème astral
+        /// </summary>
+        /// <returns></returns>
+        public Task CalculateNatalChart()
+        {
+            return CallProtected(() => Task.Run(() => CurrentNatalChart.Calculate()));
         }
 
         /// <summary>

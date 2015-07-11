@@ -46,6 +46,8 @@ namespace AstroAssistant.DesignTime
 
         public ViewModels.RelayCommand SaveNatalChartCommand { get; set; }
 
+        public ViewModels.RelayCommand CalculateNatalChartCommand { get; set; }
+
         public Services.IAstroService AstroService { get; set; }
 
         public ViewModels.INatalChartViewModel CurrentNatalChart { get; set; }

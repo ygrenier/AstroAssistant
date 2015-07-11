@@ -7,5 +7,6 @@ namespace AstroAssistant.ViewModels
         RelayCommand NewNatalChartCommand { get; }
         RelayCommand SaveAsNatalChartCommand { get; }
         RelayCommand SaveNatalChartCommand { get; }
+        RelayCommand CalculateNatalChartCommand { get; }
     }
 }

@@ -277,6 +277,37 @@ namespace Astro.SwissEphNet
             return InternalCalcPlanet(planet, time, armc, longitude, trueEclipticObliquity);
         }
 
+        #endregion
+
+        #region Calcul des maisons
+
+        /// <summary>
+        /// Convert a char to an house system
+        /// </summary>
+        public static Char HouseSystemToChar(HouseSystem hs)
+        {
+            switch (hs)
+            {
+                case HouseSystem.Koch: return 'K';
+                case HouseSystem.Porphyrius: return 'O';
+                case HouseSystem.Regiomontanus: return 'R';
+                case HouseSystem.Campanus: return 'C';
+                case HouseSystem.Equal: return 'E';
+                case HouseSystem.VehlowEqual: return 'V';
+                case HouseSystem.WholeSign: return 'W';
+                case HouseSystem.MeridianSystem: return 'X';
+                case HouseSystem.Horizon: return 'H';
+                case HouseSystem.PolichPage: return 'T';
+                case HouseSystem.Alcabitus: return 'B';
+                case HouseSystem.Morinus: return 'M';
+                case HouseSystem.KrusinskiPisa: return 'U';
+                case HouseSystem.GauquelinSector: return 'G';
+                case HouseSystem.APC: return 'Y';
+                case HouseSystem.Placidus:
+                default: return 'P';
+            }
+        }
+
         /// <summary>
         /// Calcul des maisons et des ascdendants
         /// </summary>
@@ -284,7 +315,7 @@ namespace Astro.SwissEphNet
         {
             // Houses
             double[] cusps = new double[HouseSystem == HouseSystem.GauquelinSector ? 37 : 13];
-            double[] ascmcCusps = new double[7];
+            double[] ascmcCusps = new double[10];
             String serr = null;
             var hNames = new String[] { 
                 "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", 
@@ -315,37 +346,6 @@ namespace Astro.SwissEphNet
                     HouseName = hNames[i],
                     Cusp = cusps[i]
                 };
-            }
-        }
-
-        #endregion
-
-        #region Calcul des maisons
-
-        /// <summary>
-        /// Convert a char to an house system
-        /// </summary>
-        public static Char HouseSystemToChar(HouseSystem hs)
-        {
-            switch (hs)
-            {
-                case HouseSystem.Koch: return 'K';
-                case HouseSystem.Porphyrius: return 'O';
-                case HouseSystem.Regiomontanus: return 'R';
-                case HouseSystem.Campanus: return 'C';
-                case HouseSystem.Equal: return 'E';
-                case HouseSystem.VehlowEqual: return 'V';
-                case HouseSystem.WholeSign: return 'W';
-                case HouseSystem.MeridianSystem: return 'X';
-                case HouseSystem.Horizon: return 'H';
-                case HouseSystem.PolichPage: return 'T';
-                case HouseSystem.Alcabitus: return 'B';
-                case HouseSystem.Morinus: return 'M';
-                case HouseSystem.KrusinskiPisa: return 'U';
-                case HouseSystem.GauquelinSector: return 'G';
-                case HouseSystem.APC: return 'Y';
-                case HouseSystem.Placidus:
-                default: return 'P';
             }
         }
 

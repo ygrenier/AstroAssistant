@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Astro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,9 @@ namespace AstroAssistant.Services
     /// </summary>
     public interface IAstroService
     {
+        /// <summary>
+        /// Moteur astro
+        /// </summary>
+        AstroEngine AstroEngine { get; }
     }
 }

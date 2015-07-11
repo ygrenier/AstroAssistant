@@ -81,6 +81,7 @@
     <Compile Include="Converters\StringEmptyToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="DesignTime\DtMainViewModel.cs" />
+    <Compile Include="DesignTime\DtNatalChart.cs" />
     <Compile Include="DesignTime\DtNatalChartDefinitionViewModel.cs" />
     <Compile Include="DesignTime\DtNatalChartViewModel.cs" />
     <Compile Include="Resources\Locales.Designer.cs">
@@ -96,6 +97,9 @@
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\NatalChartDefinitionView.xaml.cs">
       <DependentUpon>NatalChartDefinitionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NatalChartView.xaml.cs">
+      <DependentUpon>NatalChartView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NatalChartDefinitionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NatalChartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

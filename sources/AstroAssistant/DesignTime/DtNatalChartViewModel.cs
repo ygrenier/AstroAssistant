@@ -56,6 +56,13 @@ namespace AstroAssistant.DesignTime
         {
             return Task.FromResult(true);
         }
+
+        public Task<bool> Calculate()
+        {
+            NatalChart = new NatalChart();
+            return Task.FromResult(true);
+        }
+
     }
 #endif
 }

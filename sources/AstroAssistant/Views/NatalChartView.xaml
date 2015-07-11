@@ -1,0 +1,78 @@
+﻿<UserControl
+    x:Class="AstroAssistant.Views.NatalChartView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:astro="clr-namespace:Astro;assembly=Astro.Library"
+    xmlns:dt="clr-namespace:AstroAssistant.DesignTime"
+    mc:Ignorable="d" 
+    d:DataContext="{d:DesignInstance Type=dt:DtNatalChart, IsDesignTimeCreatable=True}"
+    d:DesignHeight="359" d:DesignWidth="535">
+    <UserControl.Resources>
+        <DataTemplate x:Key="PlanetValues" DataType="astro:PlanetValues">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding PlanetName}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Longitude}"/>
+                <TextBlock Grid.Column="2" Text="{Binding Latitude}"/>
+                <TextBlock Grid.Column="3" Text="{Binding Distance}"/>
+                <TextBlock Grid.Column="4" Text="{Binding HousePosition}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="HouseValues" DataType="astro:HouseValues">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding HouseName}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Cusp}" HorizontalAlignment="Right"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Carte du ciel"/>
+            <TabItem Header="Planètes &amp; Maisons">
+                <Grid>
+                    <ScrollViewer>
+                        <StackPanel>
+                            <Label>Planètes</Label>
+                            <ItemsControl ItemsSource="{Binding Planets}"
+                                          ItemTemplate="{StaticResource PlanetValues}"
+                                          >
+                            </ItemsControl>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0">Maisons</Label>
+                                <ItemsControl Grid.Row="1" Grid.Column="0"
+                                              ItemsSource="{Binding Houses}"
+                                              ItemTemplate="{StaticResource HouseValues}"
+                                />
+                                <Label Grid.Row="0" Grid.Column="1">Ascendants &amp; Milieux du Ciel</Label>
+                                <ItemsControl  Grid.Row="1" Grid.Column="1"
+                                               ItemsSource="{Binding AscMcs}"
+                                               ItemTemplate="{StaticResource HouseValues}"
+                                />
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

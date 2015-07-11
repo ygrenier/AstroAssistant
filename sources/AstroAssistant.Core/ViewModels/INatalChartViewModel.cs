@@ -15,5 +15,6 @@ namespace AstroAssistant.ViewModels
         System.Threading.Tasks.Task<bool> Save();
         System.Threading.Tasks.Task<bool> SaveAs();
         System.Threading.Tasks.Task<bool> SaveAs(string fileName);
+        System.Threading.Tasks.Task<bool> Calculate();
     }
 }

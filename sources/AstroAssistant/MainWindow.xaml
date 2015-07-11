@@ -44,7 +44,15 @@
                 <ColumnDefinition MinWidth="200" Width="1*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Views:NatalChartDefinitionView DataContext="{Binding CurrentNatalChart.Definition}" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Views:NatalChartDefinitionView DataContext="{Binding CurrentNatalChart.Definition}" Margin="2,4" />
+                <Button Grid.Row="1" Content="Recalculer" Margin="2,4" Command="{Binding CalculateNatalChartCommand}"/>
+            </Grid>
+            <Views:NatalChartView DataContext="{Binding CurrentNatalChart.NatalChart}" Grid.Column="1" Margin="4" Visibility="{Binding CurrentNatalChart.NatalChart, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=not}"/>
         </Grid>
 
     </DockPanel>

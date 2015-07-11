@@ -31,6 +31,9 @@ namespace AstroAssistant.ViewModels
             SaveAsNatalChartCommand = new RelayCommand(async () => {
                 await SaveAsNatalChart();
             });
+            CalculateNatalChartCommand = new RelayCommand(async () => {
+                await CalculateNatalChart();
+            });
         }
 
         /// <summary>
@@ -52,6 +55,11 @@ namespace AstroAssistant.ViewModels
         /// Commande pour l'enregistrement sous un autre nom d'un thème astral
         /// </summary>
         public RelayCommand SaveAsNatalChartCommand { get; private set; }
+
+        /// <summary>
+        /// Commande pour recalculer le thème astral
+        /// </summary>
+        public RelayCommand CalculateNatalChartCommand { get; private set; }
 
     }
 
