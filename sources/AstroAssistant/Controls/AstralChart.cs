@@ -218,6 +218,8 @@ namespace AstroAssistant.Controls
             DependencyProperty.Register("NatalChart", typeof(NatalChart), typeof(AstralChart), new PropertyMetadata(null, NatalChartProperty_Changed));
         private static void NatalChartProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            ((AstralChart)d).InvalidateMeasure();
+            ((AstralChart)d).InvalidateArrange();
             ((AstralChart)d).InvalidateVisual();
         }
 

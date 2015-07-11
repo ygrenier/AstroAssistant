@@ -52,7 +52,7 @@
                 <Views:NatalChartDefinitionView DataContext="{Binding CurrentNatalChart.Definition}" Margin="2,4" />
                 <Button Grid.Row="1" Content="Recalculer" Margin="2,4" Command="{Binding CalculateNatalChartCommand}"/>
             </Grid>
-            <Views:NatalChartView DataContext="{Binding CurrentNatalChart.NatalChart}" Grid.Column="1" Margin="4" Visibility="{Binding CurrentNatalChart.NatalChart, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=not}"/>
+            <Views:NatalChartView DataContext="{Binding CurrentNatalChart.NatalChart}" Grid.Column="1" Margin="4" Visibility="{Binding Converter={StaticResource NullToVisibilityConverter}}"/>
         </Grid>
 
     </DockPanel>
