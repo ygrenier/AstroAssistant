@@ -76,7 +76,7 @@ namespace Astro
         /// </summary>
         public override string ToString()
         {
-            return String.Format("{0}{3}{1:D2}'{2:D2}\"", Degrees, Minutes, Seconds, Polarity.ToString()[0]);
+            return String.Format("{0}° {3} {1:D2}' {2:D2}\"", Degrees, Minutes, Seconds, Polarity.ToString()[0]);
         }
 
         /// <summary>
@@ -95,26 +95,40 @@ namespace Astro
         /// </summary>
         public static bool TryParse(String s, out Longitude result)
         {
+            String[] patterns = new String[]{
+                // XX° E/W XX' XX"
+                @"^(?<deg>\d+)°?\s*(?<pol>E|W)\s*(?<min>\d+')?\s*(?<sec>\d+"")?$",
+                // XX° XX' XX E/W"
+                @"^(?<deg>\d+)°?\s*(?<min>\d+')?\s*(?<sec>\d+"")?\s*(?<pol>E|W)$",
+                // +/-XX° XX' XX"
+                @"^(?<deg>(?:\+|\-)?\d+)°?\s*(?<min>\d+')?\s*(?<sec>\d+"")?$",
+            };
+
             result = new Longitude();
             if (String.IsNullOrWhiteSpace(s))
                 return false;
-            Regex re = new Regex(@"^(?<deg>\d+)(?<pol>E|W)(?<min>\d+')?(?<sec>\d+"")?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            var match = re.Match(s);
-            if (match.Success)
+            foreach (var pattern in patterns)
             {
-                int deg = int.Parse(match.Groups["deg"].Value);
-                String pol = match.Groups["pol"].Value.ToUpper();
-                String t = match.Groups["min"].Value;
-                int min = String.IsNullOrWhiteSpace(t) ? 0 : int.Parse(t.Substring(0, t.Length - 1));
-                t = match.Groups["sec"].Value;
-                int sec = String.IsNullOrWhiteSpace(t) ? 0 : int.Parse(t.Substring(0, t.Length - 1));
-                try
+                Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                var match = re.Match(s);
+                if (match.Success)
                 {
-                    result = new Longitude(deg, min, sec, pol == "W" ? LongitudePolarity.West : LongitudePolarity.East);
-                    return true;
-
+                    int deg = int.Parse(match.Groups["deg"].Value);
+                    String pol = match.Groups["pol"].Value;
+                    String t = match.Groups["min"].Value;
+                    int min = String.IsNullOrWhiteSpace(t) ? 0 : int.Parse(t.Substring(0, t.Length - 1));
+                    t = match.Groups["sec"].Value;
+                    int sec = String.IsNullOrWhiteSpace(t) ? 0 : int.Parse(t.Substring(0, t.Length - 1));
+                    try
+                    {
+                        if (String.IsNullOrWhiteSpace(pol))
+                            result = new Longitude(deg, min, sec);
+                        else
+                            result = new Longitude(deg, min, sec, String.Equals(pol, "W", StringComparison.OrdinalIgnoreCase) ? LongitudePolarity.West : LongitudePolarity.East);
+                        return true;
+                    }
+                    catch { }
                 }
-                catch { }
             }
             return false;
         }

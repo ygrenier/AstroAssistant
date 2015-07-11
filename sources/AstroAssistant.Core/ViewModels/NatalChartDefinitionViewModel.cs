@@ -289,7 +289,20 @@ namespace AstroAssistant.ViewModels
         /// <summary>
         /// Date UTC
         /// </summary>
-        public DateTimeOffset BirthDateUTC { get { return Definition.BirthDate.ToDateTimeOffset().ToUniversalTime(); } }
+        public DateTimeOffset BirthDateUTC
+        {
+            get
+            {
+                try
+                {
+                    return Definition.BirthDate.ToDateTimeOffset().ToUniversalTime();
+                }
+                catch
+                {
+                    return DateTimeOffset.MinValue;
+                }
+            }
+        }
 
         /// <summary>
         /// Nom du lieu de naissance

@@ -32,7 +32,7 @@ namespace Astro.Library.Tests
         public void TestToString()
         {
             GeoPosition pos = new GeoPosition(46.72, -5.23, 12);
-            Assert.Equal("46E43'12\", 5S13'48\", 12 m", pos.ToString());
+            Assert.Equal("46° E 43' 12\", 5° S 13' 48\", 12 m", pos.ToString());
         }
 
     }
