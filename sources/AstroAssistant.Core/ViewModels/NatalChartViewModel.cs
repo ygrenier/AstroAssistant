@@ -43,6 +43,12 @@ namespace AstroAssistant.ViewModels
             FileName = null;
             IsDirty = false;
             Definition = new NatalChartDefinitionViewModel(_TimeZoneProvider);
+            Definition.PropertyChanged += Definition_PropertyChanged;
+        }
+
+        void Definition_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            IsDirty = true;
         }
 
         /// <summary>
@@ -51,6 +57,7 @@ namespace AstroAssistant.ViewModels
         public void Reset()
         {
             Definition = new NatalChartDefinitionViewModel(_TimeZoneProvider);
+            Definition.PropertyChanged += Definition_PropertyChanged;
             NatalChart = null;
             RaisePropertyChanged(() => Definition);
             RaisePropertyChanged(() => NatalChart);
