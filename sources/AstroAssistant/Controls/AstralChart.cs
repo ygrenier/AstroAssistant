@@ -56,6 +56,7 @@ namespace AstroAssistant.Controls
             _Ellipse1 = new Ellipse(),
             _Ellipse2 = new Ellipse();
         Line[] _ZodiacSeparators = Enumerable.Range(0, 12).Select(i => new Line()).ToArray();
+        List<Line> _HouseSeparators = Enumerable.Range(0, 12).Select(i => new Line()).ToList();
 
         static String ZodiacSymbolLetters = "♈♉♊♋♌♍♎♏♐♑♒♓";
         TextBlock[] _ZodiacSymbols = Enumerable.Range(0, 12).Select(i => new TextBlock() { Text = ZodiacSymbolLetters[i].ToString() }).ToArray();
@@ -89,12 +90,16 @@ namespace AstroAssistant.Controls
             foreach (var zs in _ZodiacSymbols)
                 _ChartSurface.Children.Add(zs);
 
+            foreach (var line in _HouseSeparators)
+                _ChartSurface.Children.Add(line);
+
             InitChartSurfaceElements();
         }
 
         void InitChartSurfaceElements()
         {
-            double largeStrokeThickness = 1.0;
+            double thinStrokeThickness = 0.7;
+            double largeStrokeThickness = 1.2;
 
             _Ellipse1.Stroke = Brushes.Black;
             _Ellipse1.StrokeThickness = largeStrokeThickness;
@@ -112,6 +117,13 @@ namespace AstroAssistant.Controls
             {
                 zs.Foreground = Brushes.DarkGray;
             }
+
+            foreach (var line in _HouseSeparators)
+            {
+                line.Stroke = Brushes.Black;
+                line.StrokeThickness = thinStrokeThickness;
+            }
+
         }
 
         static void RotatePoint(double centerX, double centerY, ref double pointX, ref double pointY, double angle)
@@ -132,6 +144,7 @@ namespace AstroAssistant.Controls
             double size = osize - (2 * margin);
             if (size <= 0) return;
 
+            // Ceinture zodicale
             Canvas.SetTop(_Ellipse1, margin);
             Canvas.SetLeft(_Ellipse1, margin);
             _Ellipse1.Width = size;
@@ -176,6 +189,29 @@ namespace AstroAssistant.Controls
                 //    CenterX = size / 2,
                 //    CenterY = size / 2
                 //};
+            }
+
+            // Séparateur des maisons
+            for (int i = 0; i < 12; i++)
+            {
+                double angleHouse = angle - (30 * i);
+                if (NatalChart != null && i < NatalChart.Houses.Count)
+                {
+                    angleHouse = angle - NatalChart.Houses[i].Cusp;
+                }
+                var line = _HouseSeparators[i];
+                Canvas.SetTop(line, margin);
+                Canvas.SetLeft(line, margin);
+                line.Width = size;
+                line.Height = size;
+                line.X1 = step;
+                line.Y1 = size / 2;
+                line.X2 = size / 2;
+                line.Y2 = size / 2;
+                line.RenderTransform = new RotateTransform(angleHouse) {
+                    CenterX = size / 2,
+                    CenterY = size / 2
+                };
             }
         }
 

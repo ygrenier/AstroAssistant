@@ -260,6 +260,7 @@ namespace Astro
             EphemerisProvider.HouseSystem = definition.HouseSystem;
 
             // Calcul des dates et des temps
+            result.DateUTC = definition.BirthDate.ToDateTimeOffset().ToUniversalTime();
             result.JulianDay = EphemerisProvider.ToJulianDay(definition.BirthDate);
             result.UniversalTime = EphemerisProvider.ToUniversalTime(result.JulianDay);
             result.EphemerisTime = EphemerisProvider.ToEphemerisTime(result.JulianDay);

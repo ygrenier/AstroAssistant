@@ -10,5 +10,6 @@
     <conv:LongitudeToStringConverter x:Key="LongitudeToStringConverter"/>
     <conv:LatitudeToStringConverter x:Key="LatitudeToStringConverter"/>
     <conv:DoubleToDegreesFormatConverter x:Key="DoubleToDegreesFormatConverter"/>
+    <conv:DoubleToTimeFormatConverter x:Key="DoubleToTimeFormatConverter"/>
     
 </ResourceDictionary>

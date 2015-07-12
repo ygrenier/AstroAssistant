@@ -45,10 +45,59 @@
                     <controls:AstralChart NatalChart="{Binding}" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Planètes &amp; Maisons">
+            <TabItem Header="Informations &amp; Calculs">
                 <Grid>
                     <ScrollViewer>
                         <StackPanel>
+                            <Label>Date et Calculs</Label>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0" Content="Date UTC"/>
+                                <Label Grid.Row="1" Grid.Column="0" Content="{Binding DateUTC}" />
+
+                                <Label Grid.Row="0" Grid.Column="1" Content="Julian Day"/>
+                                <Label Grid.Row="1" Grid.Column="1" Content="{Binding JulianDay}" />
+
+                                <Label Grid.Row="0" Grid.Column="2" Content="Delta T"/>
+                                <Label Grid.Row="1" Grid.Column="2" Content="{Binding DeltaTSec}" />
+
+                                <Label Grid.Row="2" Grid.Column="0" Content="Ephemeris Time"/>
+                                <Label Grid.Row="3" Grid.Column="0" Content="{Binding EphemerisTime}" />
+
+                                <Label Grid.Row="2" Grid.Column="1" Content="Sideral Time"/>
+                                <Label Grid.Row="3" Grid.Column="1" Content="{Binding SideralTime, ConverterParameter=hour, Converter={StaticResource DoubleToTimeFormatConverter}}" />
+
+                                <Label Grid.Row="4" Grid.Column="0" Content="Mean Ecliptic Obliquity"/>
+                                <Label Grid.Row="5" Grid.Column="0" Content="{Binding MeanEclipticObliquity, Converter={StaticResource DoubleToDegreesFormatConverter}}" />
+
+                                <Label Grid.Row="6" Grid.Column="0" Content="True Ecliptic Obliquity"/>
+                                <Label Grid.Row="7" Grid.Column="0" Content="{Binding TrueEclipticObliquity, Converter={StaticResource DoubleToDegreesFormatConverter}}" />
+
+                                <Label Grid.Row="4" Grid.Column="1" Content="Nutation in Longitude"/>
+                                <Label Grid.Row="5" Grid.Column="1" Content="{Binding NutationLongitude, Converter={StaticResource DoubleToDegreesFormatConverter}}" />
+
+                                <Label Grid.Row="6" Grid.Column="1" Content="Nutation Obliquity"/>
+                                <Label Grid.Row="7" Grid.Column="1" Content="{Binding NutationObliquity, Converter={StaticResource DoubleToDegreesFormatConverter}}" />
+
+                                <Label Grid.Row="4" Grid.Column="2" Content="ARMC"/>
+                                <Label Grid.Row="5" Grid.Column="2" Content="{Binding ARMC, Converter={StaticResource DoubleToDegreesFormatConverter}}" />
+                            </Grid>
+                            
                             <Label>Planètes</Label>
                             <ItemsControl ItemsSource="{Binding Planets}"
                                           ItemTemplate="{StaticResource PlanetValues}"

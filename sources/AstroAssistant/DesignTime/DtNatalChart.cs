@@ -23,6 +23,7 @@ namespace AstroAssistant.DesignTime
             this.Definition.Name = "Test";
             this.Definition.PositionCenter = PositionCenter.Topocentric;
 
+            this.DateUTC = dt.ToUniversalTime();
             this.JulianDay = JulianDay.J2000;
             this.EphemerisTime = new EphemerisTime(this.JulianDay, 12.34);
             this.UniversalTime = this.Definition.BirthDate.ToDateTime().ToUniversalTime();

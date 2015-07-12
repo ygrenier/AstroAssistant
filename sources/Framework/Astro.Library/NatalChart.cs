@@ -26,6 +26,11 @@ namespace Astro
         public NatalChartDefinition Definition { get; set; }
 
         /// <summary>
+        /// Date UTC
+        /// </summary>
+        public DateTimeOffset DateUTC { get; set; }
+
+        /// <summary>
         /// Date Julien
         /// </summary>
         public JulianDay JulianDay { get; set; }

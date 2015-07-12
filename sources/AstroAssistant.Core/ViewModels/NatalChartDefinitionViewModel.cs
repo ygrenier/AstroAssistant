@@ -257,7 +257,7 @@ namespace AstroAssistant.ViewModels
         /// </summary>
         public Double BirthDateUtcOffset
         {
-            get { return Definition.BirthDate.GetDateOffset().TotalHours; }
+            get { return Definition.BirthDate.GetBaseUtcOffset().TotalHours; }
             set
             {
                 TimeSpan ts = TimeSpan.FromHours(value);
@@ -306,7 +306,9 @@ namespace AstroAssistant.ViewModels
             {
                 try
                 {
-                    return Definition.BirthDate.ToDateTimeOffset().ToUniversalTime();
+                    var dto = Definition.BirthDate.ToDateTimeOffset();
+                    var tt = TimeZoneInfo.ConvertTime(dto, TimeZoneInfo.Utc);
+                    return dto.ToUniversalTime();
                 }
                 catch
                 {

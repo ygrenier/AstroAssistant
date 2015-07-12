@@ -98,6 +98,14 @@ namespace Astro
         }
 
         /// <summary>
+        /// Calcul le décalage horaire de base
+        /// </summary>
+        public TimeSpan GetBaseUtcOffset()
+        {
+            return TimeZone != null ? TimeZone.BaseUtcOffset : UtcOffset;
+        }
+
+        /// <summary>
         /// Calcul l'offset de l'heure d'été
         /// </summary>
         /// <returns></returns>
@@ -129,8 +137,7 @@ namespace Astro
         /// </summary>
         public TimeSpan GetDateOffset()
         {
-            var baseOffset = TimeZone != null ? TimeZone.BaseUtcOffset : UtcOffset;
-            return baseOffset + GetDayLightOffset();
+            return GetBaseUtcOffset() + GetDayLightOffset();
         }
 
         /// <summary>

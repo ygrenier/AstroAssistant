@@ -67,7 +67,7 @@ namespace AstroAssistant.Core.Tests
             Assert.True(await vm.LoadFromFile());
             Assert.NotNull(vm.FileName);
             Assert.NotNull(vm.Definition);
-            Assert.NotNull(vm.NatalChart);
+            Assert.Null(vm.NatalChart);
             Assert.False(vm.IsDirty);
             Assert.False(vm.IsBusy);
             vm.IsDirty = true;
@@ -101,12 +101,11 @@ namespace AstroAssistant.Core.Tests
             Assert.True(await vm.LoadFromFile());
             Assert.Equal("file.ext", vm.FileName);
             Assert.Equal("Test", vm.Definition.Definition.Name);
-            Assert.NotNull(vm.NatalChart);
+            Assert.Null(vm.NatalChart);
             var chart = vm.NatalChart;
             Assert.True(await vm.LoadFromFile("other-file.ext"));
             Assert.Equal("other-file.ext", vm.FileName);
-            Assert.NotNull(vm.NatalChart);
-            Assert.NotSame(chart, vm.NatalChart);
+            Assert.Null(vm.NatalChart);
             Assert.False(vm.IsDirty);
             Assert.False(vm.IsBusy);
             await Assert.ThrowsAsync<ArgumentNullException>(() => vm.LoadFromFile(null));
