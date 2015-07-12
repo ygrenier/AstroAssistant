@@ -43,6 +43,66 @@
             <TabItem Header="Carte du ciel">
                 <Grid>
                     <controls:AstralChart NatalChart="{Binding}" />
+                    <WrapPanel Visibility="Hidden">
+                        <Grid Width="64" Height="64">
+                            <Ellipse Stroke="Black" Fill="White" Margin="5" StrokeThickness="6"/>
+                            <Ellipse Stroke="Black" Fill="Black" Margin="26" />
+                        </Grid>
+                        <Grid Width="64" Height="64">
+                            <Path Stroke="Black" Fill="White" StrokeThickness="3">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathFigure StartPoint="16,6">
+                                            <BezierSegment Point1="61,1" Point2="60,62" Point3="17,57" />
+                                            <BezierSegment Point1="38,48" Point2="44,15" Point3="16,6" />
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </Grid>
+                        <Grid Width="64" Height="64">
+                            <Path Stroke="Black" StrokeThickness="6">
+                                <Path.Data>
+                                    <GeometryGroup>
+                                        <LineGeometry StartPoint="32,62" EndPoint="32,32" />
+                                        <LineGeometry StartPoint="22,52" EndPoint="42,52" />
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                            <Ellipse Stroke="Black" Fill="White" StrokeThickness="4" Margin="16,10,16,22" />
+                            <Path Stroke="Black" StrokeThickness="4">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathFigure StartPoint="16,4">
+                                            <BezierSegment Point1="16,14" Point2="48,14" Point3="48,4" />
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </Grid>
+                        <Grid Width="64" Height="64">
+                            <Path Stroke="Black" StrokeThickness="6">
+                                <Path.Data>
+                                    <GeometryGroup>
+                                        <LineGeometry StartPoint="32,62" EndPoint="32,32" />
+                                        <LineGeometry StartPoint="22,52" EndPoint="42,52" />
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                            <Ellipse Stroke="Black" Fill="White" StrokeThickness="4" Margin="16,10,16,22" />
+                        </Grid>
+                        <Grid Width="64" Height="64">
+                            <Line Stroke="Black" StrokeThickness="4" X1="24" Y1="40" X2="50" Y2="14" />
+                            <Ellipse Stroke="Black" Fill="White" StrokeThickness="4" Margin="8,24,24,8" />
+                            <Polyline Stroke="Black" StrokeThickness="4">
+                                <Polyline.Points>
+                                    <Point X="40" Y="14" />
+                                    <Point X="50" Y="14" />
+                                    <Point X="50" Y="24" />
+                                </Polyline.Points>
+                            </Polyline>
+                        </Grid>
+                    </WrapPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Informations &amp; Calculs">

@@ -50,6 +50,11 @@ namespace AstroAssistant.Controls
     public class AstralChart : Control
     {
         internal const String ChartSurfacePartName = "PART_ChartSurface";
+        internal const String SunPlanetPartName = "PART_Planet_Sun";
+        internal const String MoonPlanetPartName = "PART_Planet_Moon";
+        internal const String MercuryPlanetPartName = "PART_Planet_Mercury";
+        internal const String VenusPlanetPartName = "PART_Planet_Venus";
+        internal const String MarsPlanetPartName = "PART_Planet_Mars";
 
         Canvas _ChartSurface;
         
@@ -60,6 +65,7 @@ namespace AstroAssistant.Controls
         List<Line> _HouseSeparators = Enumerable.Range(0, 12).Select(i => new Line()).ToList();
         List<Line> _LargeTicks = Enumerable.Range(0, 360 / 5).Select(i => new Line()).ToList();
         Polygon _AscArrow, _McArrow;
+        Dictionary<int, Panel> _Planets = new Dictionary<int, Panel>();
 
         static String ZodiacSymbolLetters = "♈♉♊♋♌♍♎♏♐♑♒♓";
         TextBlock[] _ZodiacSymbols = Enumerable.Range(0, 12).Select(i => new TextBlock() { Text = ZodiacSymbolLetters[i].ToString() }).ToArray();
@@ -75,14 +81,28 @@ namespace AstroAssistant.Controls
             InvalidateMeasure();
         }
 
+        void SavePlanet(Planet p, String part)
+        {
+            var panel = GetTemplateChild(part) as Panel;
+            if (panel != null)
+                _Planets[p.Id] = panel;
+        }
+
         /// <summary>
         /// Application du modèle
         /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
+            SavePlanet(Planet.Sun, SunPlanetPartName);
+            SavePlanet(Planet.Moon, MoonPlanetPartName);
+            SavePlanet(Planet.Mercury, MercuryPlanetPartName);
+            SavePlanet(Planet.Venus, VenusPlanetPartName);
+            SavePlanet(Planet.Mars, MarsPlanetPartName);
+
             _ChartSurface = (Canvas)GetTemplateChild(ChartSurfacePartName);
-            _ChartSurface.Children.Clear();
+            //_ChartSurface.Children.Clear();
 
             _ChartSurface.Children.Add(_Ellipse1);
             _ChartSurface.Children.Add(_Ellipse2);
@@ -105,6 +125,11 @@ namespace AstroAssistant.Controls
             _ChartSurface.Children.Add(_AscArrow);
             _McArrow = new Polygon();
             _ChartSurface.Children.Add(_McArrow);
+
+            foreach (var panel in _Planets.Values)
+            {
+                Canvas.SetZIndex(panel, 1000);
+            }
 
             InitChartSurfaceElements();
         }
@@ -283,6 +308,30 @@ namespace AstroAssistant.Controls
                 }
             }
 
+            // planetes
+            foreach (var panel in _Planets.Values)
+            {
+                panel.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            if (NatalChart != null)
+            {
+                foreach (var pl in NatalChart.Planets)
+                {
+                    Panel pnl = null;
+                    if (!_Planets.TryGetValue(pl.Planet.Id, out pnl))
+                        continue;
+                    pnl.Visibility = System.Windows.Visibility.Visible;
+                    double anglePlanet = angle - pl.Longitude;
+                    double px = step * 1.5;
+                    double py = (size / 2) + margin;
+                    RotatePoint(osize / 2, osize / 2, ref px, ref py, anglePlanet);
+                    Canvas.SetTop(pnl, py - (pnl.ActualHeight / 2));
+                    Canvas.SetLeft(pnl, px - (pnl.ActualHeight / 2));
+                    var z = step / (pnl.Width * 2.5);
+                    pnl.RenderTransformOrigin = new Point(0.5, 0.5);
+                    pnl.RenderTransform = new ScaleTransform(z, z);
+                }
+            }
         }
 
         /// <summary>
