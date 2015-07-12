@@ -68,7 +68,7 @@ namespace AstroAssistant.Controls
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
-            InvalidateArrange();
+            InvalidateMeasure();
         }
 
         /// <summary>
@@ -124,8 +124,10 @@ namespace AstroAssistant.Controls
             pointX = x;
             pointY = y;
         }
-        void ArrangeChartSurface(double osize)
+        void ArrangeChartSurface()
         {
+            if (_ChartSurface == null) return;
+            double osize = _ChartSurface.ActualHeight;
             double margin = 2;
             double size = osize - (2 * margin);
             if (size <= 0) return;
@@ -148,7 +150,7 @@ namespace AstroAssistant.Controls
             }
             for (int i = 0; i < 12; i++)
             {
-                double angleSep = angle + (30 * i);
+                double angleSep = angle - (30 * i);
                 var line = _ZodiacSeparators[i];
                 Canvas.SetTop(line, margin);
                 Canvas.SetLeft(line, margin);
@@ -164,7 +166,7 @@ namespace AstroAssistant.Controls
                 };
 
                 var zs = _ZodiacSymbols[i];
-                double angleSymb = angleSep + 15;
+                double angleSymb = angleSep - 15;
                 double px = margin + step / 2;
                 double py = (osize / 2);
                 RotatePoint(osize / 2, osize / 2, ref px, ref py, angleSymb);
@@ -202,7 +204,7 @@ namespace AstroAssistant.Controls
             double size = Math.Min(arrangeBounds.Width, arrangeBounds.Height);
             var r = new Rect((arrangeBounds.Width - size) / 2, (arrangeBounds.Height - size) / 2, size, size);
             _ChartSurface.Arrange(r);
-            ArrangeChartSurface(size);
+            ArrangeChartSurface();
             return arrangeBounds;
         }
 
@@ -221,6 +223,7 @@ namespace AstroAssistant.Controls
             ((AstralChart)d).InvalidateMeasure();
             ((AstralChart)d).InvalidateArrange();
             ((AstralChart)d).InvalidateVisual();
+            ((AstralChart)d).ArrangeChartSurface();
         }
 
     }
