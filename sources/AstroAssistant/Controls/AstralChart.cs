@@ -1,6 +1,7 @@
 ﻿using Astro;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -289,16 +290,25 @@ namespace AstroAssistant.Controls
         /// </summary>
         protected override Size MeasureOverride(Size constraint)
         {
-            double size = Math.Min(constraint.Width, constraint.Height);
-            if (size > 0)
+            Stopwatch sw = new Stopwatch();
+            try
             {
-                for (int i = 0; i < 12; i++)
+                sw.Start();
+                double size = Math.Min(constraint.Width, constraint.Height);
+                if (size > 0)
                 {
-                    var zs = _ZodiacSymbols[i];
-                    zs.FontSize = (size * 0.15) / 3;
+                    for (int i = 0; i < 12; i++)
+                    {
+                        var zs = _ZodiacSymbols[i];
+                        zs.FontSize = (size * 0.15) / 3;
+                    }
                 }
+                return base.MeasureOverride(constraint);
             }
-            return base.MeasureOverride(constraint);
+            finally
+            {
+                System.Diagnostics.Debug.WriteLine("Measure : {0} ms", sw.ElapsedMilliseconds);
+            }
         }
 
         /// <summary>
@@ -306,11 +316,20 @@ namespace AstroAssistant.Controls
         /// </summary>
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
-            double size = Math.Min(arrangeBounds.Width, arrangeBounds.Height);
-            var r = new Rect((arrangeBounds.Width - size) / 2, (arrangeBounds.Height - size) / 2, size, size);
-            _ChartSurface.Arrange(r);
-            ArrangeChartSurface();
-            return arrangeBounds;
+            Stopwatch sw = new Stopwatch();
+            try
+            {
+                sw.Start();
+                double size = Math.Min(arrangeBounds.Width, arrangeBounds.Height);
+                var r = new Rect((arrangeBounds.Width - size) / 2, (arrangeBounds.Height - size) / 2, size, size);
+                _ChartSurface.Arrange(r);
+                ArrangeChartSurface();
+                return arrangeBounds;
+            }
+            finally
+            {
+                System.Diagnostics.Debug.WriteLine("Arrange : {0} ms", sw.ElapsedMilliseconds);
+            }
         }
 
         /// <summary>
