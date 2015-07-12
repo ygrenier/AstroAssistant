@@ -155,6 +155,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Locales.de.resx" />
     <EmbeddedResource Include="Resources\Locales.en.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

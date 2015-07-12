@@ -117,40 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppContextBuilderNotDefined" xml:space="preserve">
-    <value>The application context builder is undefined.</value>
+  <data name="DefaultShowErrorTitle" xml:space="preserve">
+    <value>Error</value>
   </data>
-  <data name="AppContextBuildFailed" xml:space="preserve">
-    <value>Failed to create an application context.</value>
+  <data name="MainRibbon_ButtonCloseTheme_Header" xml:space="preserve">
+    <value>Geschlossen</value>
   </data>
-  <data name="SaveChangesDialogMessage" xml:space="preserve">
-    <value>Do you want to save these changes?</value>
+  <data name="MainRibbon_ButtonNewTheme_Header" xml:space="preserve">
+    <value>Neu !</value>
   </data>
-  <data name="SaveChangesDialogTitle" xml:space="preserve">
-    <value>Save changes</value>
+  <data name="MainRibbon_ButtonOpenTheme_Header" xml:space="preserve">
+    <value>Öffnen</value>
   </data>
-  <data name="WrongExpressionMessage" xml:space="preserve">
-    <value>Expression invalid. Must be called with an expression of type n() =&gt; PropertyName!</value>
+  <data name="MainRibbon_ButtonSaveAsTheme_Header" xml:space="preserve">
+    <value>Speichern...</value>
   </data>
-  <data name="WrongUnaryExpressionMessage" xml:space="preserve">
-    <value>Unary-expression invalid. Must be called with an expression of type n() =&gt; PropertyName!</value>
+  <data name="MainRibbon_ButtonSaveTheme_Header" xml:space="preserve">
+    <value>Speichern</value>
   </data>
-  <data name="DayLight_FromTimeZone_Caption" xml:space="preserve">
-    <value>Calculated with the timezone!</value>
+  <data name="MainRibbon_TabHome_GroupTheme_Header" xml:space="preserve">
+    <value>Theme</value>
   </data>
-  <data name="DayLight_Off_Caption" xml:space="preserve">
-    <value>Not Active</value>
-  </data>
-  <data name="DayLight_On_Caption" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="Gender_Female_Caption" xml:space="preserve">
-    <value>Female</value>
-  </data>
-  <data name="Gender_Male_Caption" xml:space="preserve">
-    <value>Male</value>
-  </data>
-  <data name="TimeZone_Custom_Caption" xml:space="preserve">
-    <value>Custom time zone</value>
+  <data name="MainRibbon_TabHome_Header" xml:space="preserve">
+    <value>STARTSEITE</value>
   </data>
 </root>

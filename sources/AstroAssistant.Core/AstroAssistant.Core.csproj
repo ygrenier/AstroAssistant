@@ -45,6 +45,11 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\PropertyExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Locales.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Locales.de.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Locales.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +76,10 @@
     <Compile Include="ViewModels\ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Locales.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Locales.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Locales.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Locales.en.Designer.cs</LastGenOutput>

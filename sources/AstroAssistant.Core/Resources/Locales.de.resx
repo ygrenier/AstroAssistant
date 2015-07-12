@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppContextBuilderNotDefined" xml:space="preserve">
-    <value>The application context builder is undefined.</value>
+    <value>Der Context Builder-Anwendung ist nicht definiert.!</value>
   </data>
   <data name="AppContextBuildFailed" xml:space="preserve">
-    <value>Failed to create an application context.</value>
-  </data>
-  <data name="SaveChangesDialogMessage" xml:space="preserve">
-    <value>Do you want to save these changes?</value>
-  </data>
-  <data name="SaveChangesDialogTitle" xml:space="preserve">
-    <value>Save changes</value>
-  </data>
-  <data name="WrongExpressionMessage" xml:space="preserve">
-    <value>Expression invalid. Must be called with an expression of type n() =&gt; PropertyName!</value>
-  </data>
-  <data name="WrongUnaryExpressionMessage" xml:space="preserve">
-    <value>Unary-expression invalid. Must be called with an expression of type n() =&gt; PropertyName!</value>
+    <value>Gegen eine Anwendungskontext zu erstellen.!</value>
   </data>
   <data name="DayLight_FromTimeZone_Caption" xml:space="preserve">
-    <value>Calculated with the timezone!</value>
+    <value>Berechnet mit der Zeitzone!</value>
   </data>
   <data name="DayLight_Off_Caption" xml:space="preserve">
-    <value>Not Active</value>
+    <value>Inaktiv</value>
   </data>
   <data name="DayLight_On_Caption" xml:space="preserve">
-    <value>Active</value>
+    <value>Aktiv</value>
   </data>
   <data name="Gender_Female_Caption" xml:space="preserve">
-    <value>Female</value>
+    <value>Frau</value>
   </data>
   <data name="Gender_Male_Caption" xml:space="preserve">
-    <value>Male</value>
+    <value>Mann</value>
+  </data>
+  <data name="SaveChangesDialogMessage" xml:space="preserve">
+    <value>Möchten Sie die Änderungen speichern?</value>
+  </data>
+  <data name="SaveChangesDialogTitle" xml:space="preserve">
+    <value>Speichern Sie die Änderungen!</value>
   </data>
   <data name="TimeZone_Custom_Caption" xml:space="preserve">
-    <value>Custom time zone</value>
+    <value>Zeitzone</value>
+  </data>
+  <data name="WrongExpressionMessage" xml:space="preserve">
+    <value>Ungültiger Ausdruck. Muss mit einem Ausdruck von n-Typ () =&gt; Propertyname genannt werden!</value>
+  </data>
+  <data name="WrongUnaryExpressionMessage" xml:space="preserve">
+    <value>Ungültige unary Ausdruck. Muss mit einem Ausdruck von n-Typ () =&amp;gt; Propertyname genannt werden!</value>
   </data>
 </root>
