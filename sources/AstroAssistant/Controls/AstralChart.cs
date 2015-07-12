@@ -57,6 +57,8 @@ namespace AstroAssistant.Controls
             _Ellipse2 = new Ellipse();
         Line[] _ZodiacSeparators = Enumerable.Range(0, 12).Select(i => new Line()).ToArray();
         List<Line> _HouseSeparators = Enumerable.Range(0, 12).Select(i => new Line()).ToList();
+        List<Line> _LargeTicks = Enumerable.Range(0, 360 / 5).Select(i => new Line()).ToList();
+        Polygon _AscArrow, _McArrow;
 
         static String ZodiacSymbolLetters = "♈♉♊♋♌♍♎♏♐♑♒♓";
         TextBlock[] _ZodiacSymbols = Enumerable.Range(0, 12).Select(i => new TextBlock() { Text = ZodiacSymbolLetters[i].ToString() }).ToArray();
@@ -93,13 +95,24 @@ namespace AstroAssistant.Controls
             foreach (var line in _HouseSeparators)
                 _ChartSurface.Children.Add(line);
 
+            foreach (var line in _LargeTicks)
+            {
+                _ChartSurface.Children.Add(line);
+            }
+
+            _AscArrow = new Polygon();
+            _ChartSurface.Children.Add(_AscArrow);
+            _McArrow = new Polygon();
+            _ChartSurface.Children.Add(_McArrow);
+
             InitChartSurfaceElements();
         }
 
         void InitChartSurfaceElements()
         {
+            double extraThinStrokeThickness = 0.3;
             double thinStrokeThickness = 0.7;
-            double largeStrokeThickness = 1.2;
+            double largeStrokeThickness = 1.5;
 
             _Ellipse1.Stroke = Brushes.Black;
             _Ellipse1.StrokeThickness = largeStrokeThickness;
@@ -118,12 +131,34 @@ namespace AstroAssistant.Controls
                 zs.Foreground = Brushes.DarkGray;
             }
 
-            foreach (var line in _HouseSeparators)
+            for (int i = 0; i < _HouseSeparators.Count; i++)
             {
+                var line = _HouseSeparators[i];
                 line.Stroke = Brushes.Black;
-                line.StrokeThickness = thinStrokeThickness;
+                line.StrokeThickness = i % 3 == 0 ? largeStrokeThickness : thinStrokeThickness;
             }
 
+            foreach (var line in _LargeTicks)
+            {
+                line.Stroke = Brushes.DarkGray;
+                line.StrokeThickness = extraThinStrokeThickness;
+            }
+
+            _AscArrow.Fill = Brushes.Black;
+            _AscArrow.Points.Add(new Point(0, 16));
+            _AscArrow.Points.Add(new Point(32, 0));
+            _AscArrow.Points.Add(new Point(32, 32));
+            _AscArrow.Width = 32;
+            _AscArrow.Height = 32;
+            _AscArrow.RenderTransformOrigin = new Point(0, 0.5);
+
+            _McArrow.Fill = Brushes.Black;
+            _McArrow.Points.Add(new Point(0, 16));
+            _McArrow.Points.Add(new Point(32, 0));
+            _McArrow.Points.Add(new Point(32, 32));
+            _McArrow.Width = 32;
+            _McArrow.Height = 32;
+            _McArrow.RenderTransformOrigin = new Point(0, 0.5);
         }
 
         static void RotatePoint(double centerX, double centerY, ref double pointX, ref double pointY, double angle)
@@ -191,6 +226,24 @@ namespace AstroAssistant.Controls
                 //};
             }
 
+            for (int i = 0; i < _LargeTicks.Count; i++)
+            {
+                double angleSep = angle - (5 * i);
+                var line = _LargeTicks[i];
+                Canvas.SetTop(line, margin);
+                Canvas.SetLeft(line, margin);
+                line.Width = size;
+                line.Height = size;
+                line.X1 = step / 8 * (i % 2 == 0 ? 6.5 : 7);
+                line.Y1 = size / 2;
+                line.X2 = step;
+                line.Y2 = size / 2;
+                line.RenderTransform = new RotateTransform(angleSep) {
+                    CenterX = size / 2,
+                    CenterY = size / 2
+                };
+            }
+
             // Séparateur des maisons
             for (int i = 0; i < 12; i++)
             {
@@ -212,7 +265,23 @@ namespace AstroAssistant.Controls
                     CenterX = size / 2,
                     CenterY = size / 2
                 };
+
+                if (i == 0 || i == 9)
+                {
+                    Polygon arrow = i == 0 ? _AscArrow : _McArrow;
+                    double px = step + margin;
+                    double py = (size / 2) + margin;
+                    RotatePoint(osize / 2, osize / 2, ref px, ref py, angleHouse);
+                    Canvas.SetTop(arrow, py - (arrow.ActualHeight / 2));
+                    Canvas.SetLeft(arrow, px);
+                    var tg = new TransformGroup();
+                    var z = step / (arrow.Width * 5);
+                    tg.Children.Add(new ScaleTransform(z, z));
+                    tg.Children.Add(new RotateTransform(angleHouse));
+                    arrow.RenderTransform = tg;
+                }
             }
+
         }
 
         /// <summary>
