@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:conv="clr-namespace:AstroAssistant.Converters"
+                    >
+    
+    <!-- Converters -->
+    <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+    <conv:StringEmptyToVisibilityConverter x:Key="StringEmptyToVisibilityConverter"/>
+    <conv:LongitudeToStringConverter x:Key="LongitudeToStringConverter"/>
+    <conv:LatitudeToStringConverter x:Key="LatitudeToStringConverter"/>
+    <conv:DoubleToDegreesFormatConverter x:Key="DoubleToDegreesFormatConverter"/>
+    <conv:DoubleToTimeFormatConverter x:Key="DoubleToTimeFormatConverter"/>
+    
+</ResourceDictionary>

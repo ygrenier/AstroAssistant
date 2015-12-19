@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="AstroAssistant.Views.NatalChartDefinitionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dt="clr-namespace:AstroAssistant.DesignTime"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=dt:DtNatalChartDefinitionViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="520" d:DesignWidth="300">
+    <Grid KeyboardNavigation.TabNavigation="Cycle">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="5,1"/>
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="5,1"/>
+                    </Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="Margin" Value="5,1"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <GroupBox Header="Thème">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Nom" />
+                        <TextBox Grid.Row="1" Text="{Binding Name}" />
+                        <Label Grid.Row="2" Content="Genre" />
+                        <ComboBox Grid.Row="3" SelectedValue="{Binding Gender}" ItemsSource="{Binding ListGenders}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                    </Grid>
+                </GroupBox>
+                
+                <GroupBox Header="Date de naissance">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Année"/>
+                        <Label Grid.Column="1" Grid.Row="0" Content="Mois"/>
+                        <Label Grid.Column="2" Grid.Row="0" Content="Jour"/>
+                        <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding BirthDateYear}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding BirthDateMonth}"/>
+                        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding BirthDateDay}"/>
+
+                        <Label Grid.Column="0" Grid.Row="2" Content="Heure"/>
+                        <Label Grid.Column="1" Grid.Row="2" Content="Minute"/>
+                        <Label Grid.Column="2" Grid.Row="2" Content="Seconde"/>
+                        <TextBox Grid.Column="0" Grid.Row="3" Text="{Binding BirthDateHour}"/>
+                        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding BirthDateMinute}"/>
+                        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding BirthDateSecond}"/>
+
+                        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Content="Fuseau Horaire"/>
+                        <ComboBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" SelectedValue="{Binding BirthDateTimeZone}" ItemsSource="{Binding ListTimeZoneInfos}" DisplayMemberPath="Value" SelectedValuePath="Key" />
+
+                        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Content="Décalage horaire"/>
+                        <TextBlock Grid.Column="2" Grid.Row="6" Text="{Binding BirthDateUtcOffset}" VerticalAlignment="Center" TextAlignment="Right" />
+                        <TextBox Grid.Column="2" Grid.Row="6" Text="{Binding BirthDateUtcOffset, Mode=TwoWay}" VerticalAlignment="Center" TextAlignment="Right" Visibility="{Binding BirthDateTimeZone, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=not}" />
+
+                        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" Content="Heure d'été"/>
+                        <ComboBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8" SelectedValue="{Binding BirthDateDayLight}" ItemsSource="{Binding ListDayLightDefinitions}"  DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                        <TextBlock Grid.Column="3" Grid.Row="8" Text="{Binding BirthDayLightOffset}" VerticalAlignment="Center" TextAlignment="Right" />
+
+                        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9" Content="Date UTC"/>
+                        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="10" Text="{Binding BirthDateUTC}" VerticalAlignment="Center" TextAlignment="Left" />
+                        
+                    </Grid>
+                </GroupBox>
+                
+                <GroupBox Header="Lieu de naissance">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding BirthPlaceName}" />
+                        <Label Grid.Row="1" Grid.Column="0" Content="Longitude" />
+                        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BirthPlaceLongitude, Converter={StaticResource LongitudeToStringConverter}}" />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Latitude" />
+                        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BirthPlaceLatitude, Converter={StaticResource LatitudeToStringConverter}, ValidatesOnExceptions=True}" />
+                        <Label Grid.Row="3" Grid.Column="0" Content="Altitude" />
+                        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{Binding BirthPlaceAltitude}" />
+
+                    </Grid>
+                    
+                </GroupBox>
+
+                <GroupBox Header="Options de calcul">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Position du centre" />
+                        <ComboBox Grid.Row="1" SelectedValue="{Binding PositionCenter}" ItemsSource="{Binding ListPositionCenters}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                        <Label Grid.Row="2" Content="Système de maison" />
+                        <ComboBox Grid.Row="3" SelectedValue="{Binding HouseSystem}" ItemsSource="{Binding ListHouseSystems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                    </Grid>
+                </GroupBox>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

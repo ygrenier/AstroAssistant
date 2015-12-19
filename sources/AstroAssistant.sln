@@ -5,6 +5,24 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroAssistant", "AstroAssistant\AstroAssistant.csproj", "{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{EE48F4B0-5C75-42C8-9351-BD0B300A2091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astro.Library", "Framework\Astro.Library\Astro.Library.csproj", "{EF40F671-F39F-4FC7-AA4A-0431274C7204}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2FFBD742-BD74-4B52-B922-826313A5452D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astro.Library.Tests", "Tests\Astro.Library.Tests\Astro.Library.Tests.csproj", "{22B2366D-FCB5-4DEC-96C6-AC7699614E13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{CE2BC33F-6A6E-4B7F-A405-5D8ED56F27C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppLibs", "AppLibs", "{AA84DCDD-3F91-4CD9-A88E-79C54B49E82D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroAssistant.Core", "AstroAssistant.Core\AstroAssistant.Core.csproj", "{66607154-DA36-4B55-815D-AD92E904759E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroAssistant.Core.Tests", "Tests\AstroAssistant.Core.Tests\AstroAssistant.Core.Tests.csproj", "{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astro.SwissEphNet", "Framework\Astro.SwissEphNet\Astro.SwissEphNet.csproj", "{5A212B4E-E21B-42FF-8095-9775B6C64000}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +33,39 @@ Global
 		{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46DDEF1F-3D8C-413B-AC08-4D1B144A3204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22B2366D-FCB5-4DEC-96C6-AC7699614E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22B2366D-FCB5-4DEC-96C6-AC7699614E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22B2366D-FCB5-4DEC-96C6-AC7699614E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22B2366D-FCB5-4DEC-96C6-AC7699614E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66607154-DA36-4B55-815D-AD92E904759E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66607154-DA36-4B55-815D-AD92E904759E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66607154-DA36-4B55-815D-AD92E904759E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66607154-DA36-4B55-815D-AD92E904759E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A212B4E-E21B-42FF-8095-9775B6C64000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{46DDEF1F-3D8C-413B-AC08-4D1B144A3204} = {CE2BC33F-6A6E-4B7F-A405-5D8ED56F27C7}
+		{EF40F671-F39F-4FC7-AA4A-0431274C7204} = {EE48F4B0-5C75-42C8-9351-BD0B300A2091}
+		{22B2366D-FCB5-4DEC-96C6-AC7699614E13} = {2FFBD742-BD74-4B52-B922-826313A5452D}
+		{66607154-DA36-4B55-815D-AD92E904759E} = {AA84DCDD-3F91-4CD9-A88E-79C54B49E82D}
+		{18FB47FB-06C0-4768-82DF-4FE01BE1EC49} = {2FFBD742-BD74-4B52-B922-826313A5452D}
+		{5A212B4E-E21B-42FF-8095-9775B6C64000} = {EE48F4B0-5C75-42C8-9351-BD0B300A2091}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_NeutralResourcesLanguage = fr-FR
 	EndGlobalSection
 EndGlobal

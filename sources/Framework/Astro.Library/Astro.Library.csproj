@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF40F671-F39F-4FC7-AA4A-0431274C7204}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Astro</RootNamespace>
+    <AssemblyName>Astro.Library</AssemblyName>
+    <DefaultLanguage>fr-FR</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AstroEngine.cs" />
+    <Compile Include="Bodies\Planet.cs" />
+    <Compile Include="DateDefinition.cs" />
+    <Compile Include="Date\EphemerisTime.cs" />
+    <Compile Include="Date\JulianDay.cs" />
+    <Compile Include="Date\SideralTime.cs" />
+    <Compile Include="Date\[Enums].cs" />
+    <Compile Include="EclipticNutationValues.cs" />
+    <Compile Include="Extensions\EphemerisProviderExtensions.cs" />
+    <Compile Include="Geographic\GeoPosition.cs" />
+    <Compile Include="Geographic\Latitude.cs" />
+    <Compile Include="Geographic\Longitude.cs" />
+    <Compile Include="Houses\HouseValues.cs" />
+    <Compile Include="IEphemerisProvider.cs" />
+    <Compile Include="ITimeZoneProvider.cs" />
+    <Compile Include="NatalChart.cs" />
+    <Compile Include="NatalChartDefinition.cs" />
+    <Compile Include="NatalChartSerializer.cs" />
+    <Compile Include="PlanetValues.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="[Enums].cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
